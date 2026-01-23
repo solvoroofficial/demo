@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lindenwood Academy | A Foundation for Life</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #334155; }
+        h1, h2, h3, .serif { font-family: 'Source Serif Pro', serif; color: #1E293B; }
+        
+        .bg-sage { background-color: #F8FAFB; }
+        .border-academic { border-color: #E2E8F0; }
+        
+        /* Gentle transitions */
+        .fade-in { transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        
+        /* Scannable layout helpers */
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+    </style>
+</head>
+<body x-data="{ mobileMenu: false }">
+
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#1E293B] flex items-center justify-center rounded-sm">
+                    <span class="text-white font-serif text-xl">L</span>
+                </div>
+                <div class="leading-none">
+                    <div class="text-lg font-bold serif tracking-tight">Lindenwood</div>
+                    <div class="text-[10px] uppercase tracking-widest text-gray-400 font-medium">Academy</div>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-10 text-sm font-medium">
+                <a href="#about" class="hover:text-blue-700 transition">About Us</a>
+                <a href="#academics" class="hover:text-blue-700 transition">Academics</a>
+                <a href="#campus" class="hover:text-blue-700 transition">Campus Life</a>
+                <a href="#admissions" class="bg-[#1E293B] text-white px-6 py-2.5 rounded-sm hover:bg-slate-700 transition">Enquire Now</a>
+            </nav>
+
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 bg-[#F8FAFB]">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] mb-6">
+                    Cultivating curiosity, <br> character, and <br> competence.
+                </h1>
+                <p class="text-lg text-slate-500 mb-10 max-w-md leading-relaxed">
+                    A balanced education that focuses on academic rigor and personal growth in a safe, supportive environment.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#admissions" class="bg-[#1E293B] text-white px-8 py-4 rounded-sm text-center font-semibold hover:bg-slate-800 transition">
+                        Connect with Admissions
+                    </a>
+                    <a href="#about" class="border border-slate-200 bg-white text-slate-600 px-8 py-4 rounded-sm text-center font-semibold hover:bg-slate-50 transition">
+                        Our Philosophy
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80" alt="Student learning" class="rounded-sm shadow-2xl grayscale-[20%]">
+                <div class="absolute -bottom-6 -left-6 bg-white p-6 shadow-xl hidden md:block">
+                    <p class="text-xs uppercase tracking-widest text-slate-400 font-bold mb-1">Upcoming Term</p>
+                    <p class="serif text-lg font-bold">August 2026 Intake</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-padding px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8">Our Mission</h2>
+            <div class="w-12 h-1 bg-blue-600 mx-auto mb-8"></div>
+            <p class="text-xl text-slate-600 leading-relaxed italic serif">
+                "To provide an educational experience that goes beyond textbooks, fostering a lifelong love for learning and a strong sense of responsibility toward the community."
+            </p>
+            <p class="mt-8 text-slate-500 leading-relaxed">
+                Founded on the principles of integrity and intellectual freedom, Lindenwood Academy has been a cornerstone of academic excellence. We believe in nurturing the unique talents of every student through a structured yet flexible learning approach.
+            </p>
+        </div>
+    </section>
+
+    <section id="academics" class="section-padding px-6 bg-sage border-y border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold">Academic Programs</h2>
+                <p class="text-slate-500 mt-2">Tailored stages of development for every learner.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white border border-gray-100 rounded-sm hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4 serif">Primary School</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Building foundational literacy, numeracy, and social skills through play and guided inquiry.</p>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-widest">Grades 1 — 5</span>
+                </div>
+                <div class="p-8 bg-white border border-gray-100 rounded-sm hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4 serif">Middle School</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Encouraging critical thinking and independent study habits across a broad spectrum of subjects.</p>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-widest">Grades 6 — 8</span>
+                </div>
+                <div class="p-8 bg-white border border-gray-100 rounded-sm hover:shadow-lg transition">
+                    <h3 class="text-xl font-bold mb-4 serif">High School</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">Preparing students for university through rigorous advanced placement and career guidance.</p>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-widest">Grades 9 — 12</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="text-3xl md:text-4xl font-bold">Why Lindenwood?</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-6 h-6 bg-blue-50 text-blue-600 flex items-center justify-center rounded-full flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Experienced Faculty</h4>
+                            <p class="text-sm text-slate-500">Our educators are subject-matter experts committed to professional development and student care.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-6 h-6 bg-blue-50 text-blue-600 flex items-center justify-center rounded-full flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Safe Environment</h4>
+                            <p class="text-sm text-slate-500">We maintain a campus culture of mutual respect, safety, and emotional well-being.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-6 h-6 bg-blue-50 text-blue-600 flex items-center justify-center rounded-full flex-shrink-0 mt-1">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Balanced Growth</h4>
+                            <p class="text-sm text-slate-500">Equal emphasis on sports, performing arts, and community service alongside academics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-100 h-96 rounded-sm relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80" alt="Campus library" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section id="campus" class="section-padding px-6 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">Life at Lindenwood</h2>
+                <p class="text-slate-400">Environment shapes the potential of the student.</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="space-y-4">
+                    <div class="h-48 bg-slate-800 rounded-sm">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Smart Classrooms</p>
+                </div>
+                <div class="space-y-4 pt-8">
+                    <div class="h-48 bg-slate-800 rounded-sm">
+                         <img src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Sports Arena</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="h-48 bg-slate-800 rounded-sm">
+                         <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Central Library</p>
+                </div>
+                <div class="space-y-4 pt-8">
+                    <div class="h-48 bg-slate-800 rounded-sm">
+                         <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-60">
+                    </div>
+                    <p class="text-xs uppercase tracking-widest font-bold">Science Labs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admissions" class="section-padding px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6">Begin the Journey</h2>
+                    <p class="text-slate-500 mb-8 leading-relaxed">
+                        Choosing the right school is a significant decision for your family. We are here to help you understand if Lindenwood Academy is the right fit for your child. 
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="text-blue-600 font-bold">P:</div>
+                            <div class="text-slate-600 font-medium">+1 (555) 123-4567</div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="text-blue-600 font-bold">E:</div>
+                            <div class="text-slate-600 font-medium">admissions@lindenwood.edu</div>
+                        </div>
+                    </div>
+                    <p class="mt-12 text-sm text-slate-400 italic">“Our admissions team will guide you through the process, from campus tours to final registration.”</p>
+                </div>
+
+                <form class="bg-sage p-8 border border-gray-100 space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase font-bold text-slate-400">Student Name</label>
+                            <input type="text" class="w-full border-b border-gray-200 bg-transparent py-2 outline-none focus:border-blue-600 transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase font-bold text-slate-400">Parent Name</label>
+                            <input type="text" class="w-full border-b border-gray-200 bg-transparent py-2 outline-none focus:border-blue-600 transition">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase font-bold text-slate-400">Email Address</label>
+                        <input type="email" class="w-full border-b border-gray-200 bg-transparent py-2 outline-none focus:border-blue-600 transition">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase font-bold text-slate-400">Message / Inquiry</label>
+                        <textarea rows="3" class="w-full border-b border-gray-200 bg-transparent py-2 outline-none focus:border-blue-600 transition resize-none"></textarea>
+                    </div>
+                    <button class="w-full bg-[#1E293B] text-white py-4 font-bold rounded-sm hover:bg-blue-900 transition shadow-lg">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-white border-t border-gray-100 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <div class="text-xl font-bold serif mb-1">Lindenwood Academy</div>
+                <p class="text-xs text-slate-400 uppercase tracking-widest font-medium">Character • Curiosity • Excellence</p>
+            </div>
+            <div class="text-center md:text-right text-sm text-slate-500">
+                123 Academy Grove, Education Valley <br>
+                contact@lindenwood.edu | (555) 000-0000
+            </div>
+        </div>
+        <div class="mt-12 text-center text-[10px] text-slate-300 uppercase tracking-widest font-bold">
+            This is a demo website created for presentation purposes.
+        </div>
+    </footer>
+
+    <div x-show="mobileMenu" 
+         x-transition.opacity 
+         class="fixed inset-0 z-[100] bg-[#1E293B] flex flex-col justify-center items-center text-center text-white" 
+         x-cloak>
+        <button @click="mobileMenu = false" class="absolute top-8 right-8 text-white">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="space-y-8 text-2xl font-serif">
+            <a href="#about" @click="mobileMenu = false" class="block">About Us</a>
+            <a href="#academics" @click="mobileMenu = false" class="block">Academics</a>
+            <a href="#campus" @click="mobileMenu = false" class="block">Campus Life</a>
+            <a href="#admissions" @click="mobileMenu = false" class="block bg-white text-[#1E293B] px-8 py-3 rounded-sm font-sans font-bold text-lg">Enquire</a>
+        </div>
+    </div>
+
+</body>
+</html>
