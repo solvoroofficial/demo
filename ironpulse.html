@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRONPULSE | Elite Human Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0f0f0f;
+            --accent: #00f2ff; /* Electric Blue */
+            --accent-rgb: 0, 242, 255;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        [data-theme="light"] {
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --accent: #0077ff;
+            --accent-rgb: 0, 119, 255;
+            --text-main: #121212;
+            --text-dim: #666666;
+            --glass: rgba(0, 0, 0, 0.02);
+            --border: rgba(0, 0, 0, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            transition: background-color 0.6s var(--ease);
+        }
+
+        /* --- Custom Cursor --- */
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed; pointer-events: none;
+            z-index: 9999; mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.4rem; letter-spacing: 4px; color: var(--accent); }
+        
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-main); font-size: 0.8rem; 
+            text-transform: uppercase; letter-spacing: 2px; transition: var(--ease);
+            opacity: 0.7;
+        }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; text-align: center;
+        }
+
+        .hero-video-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.4; z-index: -1; filter: grayscale(100%);
+        }
+
+        .hero-content h1 {
+            font-family: 'Syncopate', sans-serif; font-size: clamp(2rem, 10vw, 6rem);
+            line-height: 1; margin-bottom: 2rem;
+        }
+
+        .glitch-text {
+            position: relative;
+            background: linear-gradient(90deg, var(--text-main), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Animated Grid Sections --- */
+        section { padding: 120px 8%; }
+        
+        .section-header { margin-bottom: 4rem; }
+        .section-header span { color: var(--accent); text-transform: uppercase; letter-spacing: 5px; font-size: 0.7rem; }
+        .section-header h2 { font-family: 'Syncopate', sans-serif; font-size: 2.5rem; margin-top: 10px; }
+
+        .program-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+        }
+
+        .p-card {
+            background: var(--surface);
+            padding: 3rem; border: 1px solid var(--border);
+            position: relative; overflow: hidden; transition: 0.6s var(--ease);
+        }
+
+        .p-card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(var(--accent-rgb), 0.1) 0%, transparent 70%);
+            opacity: 0; transition: 0.6s var(--ease);
+        }
+
+        .p-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .p-card:hover::before { opacity: 1; }
+
+        .p-card h3 { font-size: 1.8rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+        .p-card p { color: var(--text-dim); position: relative; z-index: 1; }
+
+        /* --- Pricing Table (Premium) --- */
+        .price-card {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 4rem 2rem; border-radius: 4px; text-align: center; transition: 0.5s;
+        }
+
+        .price-card.featured {
+            background: var(--text-main); color: var(--bg); transform: scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+
+        .price-card h4 { text-transform: uppercase; letter-spacing: 3px; margin-bottom: 2rem; }
+        .amount { font-size: 4rem; font-weight: 700; font-family: 'Syncopate'; }
+        .amount span { font-size: 1rem; }
+
+        /* --- Buttons --- */
+        .cta-btn {
+            padding: 1.2rem 2.5rem; border: 1px solid var(--accent);
+            background: transparent; color: var(--accent); font-family: 'Syncopate';
+            font-size: 0.7rem; letter-spacing: 2px; transition: 0.4s; position: relative;
+        }
+
+        .cta-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 30px var(--accent); }
+
+        /* --- Scroll Animation Classes --- */
+        .reveal { opacity: 0; transform: translateY(50px) skewY(2deg); transition: 1s var(--ease); }
+        .reveal.visible { opacity: 1; transform: translateY(0) skewY(0); }
+
+        /* --- Testimonial Slider --- */
+        .slider-wrap { overflow: hidden; padding: 20px 0; }
+        .slider { display: flex; gap: 2rem; animation: slide 20s linear infinite; }
+        .slide { 
+            min-width: 400px; padding: 2rem; border-left: 2px solid var(--accent);
+            background: var(--glass); 
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            #cursor { display: none; }
+            .hero-content h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <nav>
+        <div class="logo">IRONPULSE</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="theme-toggle" style="background:none; border:none; font-size:1.2rem; filter:grayscale(1);">🌙</button>
+    </nav>
+
+    <section class="hero" id="home">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070" class="hero-video-bg" alt="Gym Background">
+        <div class="hero-content">
+            <h1 class="reveal">LIMITLESS <br> <span class="glitch-text">POTENTIAL</span></h1>
+            <p class="reveal" style="max-width: 500px; margin: 0 auto 2rem; color: var(--text-dim);">The premium destination for those who demand more from their bodies and their lives.</p>
+            <div class="reveal">
+                <button class="cta-btn">JOIN THE ELITE</button>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--surface); padding: 60px 8%;">
+        <div class="program-grid reveal" style="text-align: center;">
+            <div><h2 class="amount" data-val="1200">0</h2><p>ATHLETES</p></div>
+            <div><h2 class="amount" data-val="45">0</h2><p>PRO COACHES</p></div>
+            <div><h2 class="amount" data-val="24">0</h2><p>OPEN HOURS</p></div>
+        </div>
+    </section>
+
+    <section id="programs">
+        <div class="section-header reveal">
+            <span>Engineering Strength</span>
+            <h2>Discipline Programs</h2>
+        </div>
+        <div class="program-grid">
+            <div class="p-card reveal">
+                <h3>V02 MAX</h3>
+                <p>Metabolic conditioning designed to push the human cardiovascular engine to its absolute limit.</p>
+            </div>
+            <div class="p-card reveal">
+                <h3>HYPERTROPHY</h3>
+                <p>Scientific muscle architecture using progressive overload and premium isolation tech.</p>
+            </div>
+            <div class="p-card reveal">
+                <h3>MINDSET</h3>
+                <p>Neurological resilience training. Success starts within the neural pathways of the brain.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="membership">
+        <div class="program-grid">
+            <div class="price-card reveal">
+                <h4>Foundations</h4>
+                <div class="amount">$99<span>/mo</span></div>
+                <ul style="list-style:none; margin: 2rem 0; color: var(--text-dim);">
+                    <li>Full Gym Access</li>
+                    <li>Basic Analytics</li>
+                </ul>
+                <button class="cta-btn">Select</button>
+            </div>
+            <div class="price-card featured reveal">
+                <h4>Vanguard</h4>
+                <div class="amount">$189<span>/mo</span></div>
+                <ul style="list-style:none; margin: 2rem 0;">
+                    <li>Priority Access</li>
+                    <li>Biometric Tracking</li>
+                    <li>Weekly Pro-Coaching</li>
+                </ul>
+                <button class="cta-btn" style="background:var(--bg); color:var(--text-main);">Join Vanguard</button>
+            </div>
+            <div class="price-card reveal">
+                <h4>Apex</h4>
+                <div class="amount">$499<span>/mo</span></div>
+                <ul style="list-style:none; margin: 2rem 0; color: var(--text-dim);">
+                    <li>24/7 Concierge</li>
+                    <li>Daily Meal Prep</li>
+                    <li>Genetic Mapping</li>
+                </ul>
+                <button class="cta-btn">Inquire</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="slider-wrap">
+        <div class="slider">
+            <div class="slide">"The most sophisticated training facility I have ever stepped into." - Marcus T.</div>
+            <div class="slide">"Elite coaching and a community that demands excellence." - Sarah K.</div>
+            <div class="slide">"IronPulse didn't just change my body; it changed my life." - David R.</div>
+            <div class="slide">"The most sophisticated training facility I have ever stepped into." - Marcus T.</div>
+            <div class="slide">"Elite coaching and a community that demands excellence." - Sarah K.</div>
+        </div>
+    </div>
+
+    <section id="contact" style="border-top: 1px solid var(--border);">
+        <div class="program-grid">
+            <div class="reveal">
+                <h2>READY FOR THE <br>NEXT LEVEL?</h2>
+                <p style="margin: 2rem 0; color: var(--text-dim);">Join the waitlist for our private membership intake.</p>
+            </div>
+            <form class="reveal" style="display: flex; flex-direction: column; gap: 1rem;">
+                <input type="text" placeholder="FULL NAME" style="background:transparent; border:none; border-bottom: 1px solid var(--border); padding: 1rem; color: white;">
+                <input type="email" placeholder="EMAIL ADDRESS" style="background:transparent; border:none; border-bottom: 1px solid var(--border); padding: 1rem; color: white;">
+                <button class="cta-btn" type="button" style="width: fit-content; margin-top: 2rem;">SUBMIT APPLICATION</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor Movement
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.body.hasAttribute('data-theme');
+            if (isLight) {
+                document.body.removeAttribute('data-theme');
+                themeToggle.innerText = '🌙';
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeToggle.innerText = '☀️';
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Counter animation trigger
+                    if (entry.target.querySelector('.amount[data-val]')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Number Counter Logic
+        function animateCounters() {
+            const counters = document.querySelectorAll('.amount[data-val]');
+            counters.forEach(c => {
+                const target = +c.getAttribute('data-val');
+                const update = () => {
+                    const current = +c.innerText.replace('+', '');
+                    const inc = target / 50;
+                    if (current < target) {
+                        c.innerText = Math.ceil(current + inc) + (target === 24 ? '' : '+');
+                        setTimeout(update, 30);
+                    }
+                };
+                update();
+            });
+        }
+
+        // Magnetic Button Effect (Subtle)
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0, 0)`;
+            });
+        });
+    </script>
+</body>
+</html>
