@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vanguard Global | Elite Trade Infrastructure & Logistics</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --emerald: #065f46;
+            --emerald-bright: #10b981;
+            --emerald-glow: rgba(16, 185, 129, 0.3);
+            --obsidian: #000000;
+            --ios-gray: #1c1c1e;
+            --ios-card: rgba(28, 28, 30, 0.7);
+            --gold: #fbbf24;
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius-xl: 44px;
+            --radius-lg: 32px;
+            --radius-md: 24px;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+        body { 
+            background-color: var(--obsidian); 
+            color: var(--text-main); 
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; 
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+        /* Enhanced background with subtle map and gradient */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2071&auto=format');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
+
+        /* --- DESKTOP NAV (PILL) --- */
+        .navbar {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1200px; height: 68px;
+            background: rgba(28, 28, 30, 0.7); backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--border); border-radius: 100px;
+            z-index: 2000; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 2.2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.5px; text-decoration: none; color: white; }
+        .logo span { color: var(--emerald-bright); }
+        .nav-links { display: flex; gap: 2.2rem; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--emerald-bright); }
+
+        /* --- MOBILE HEADER --- */
+        .mobile-header {
+            position: fixed; top: 16px; left: 16px; right: 16px;
+            display: none; justify-content: space-between; align-items: center;
+            z-index: 2500; background: rgba(28,28,30,0.8); backdrop-filter: blur(20px);
+            padding: 10px 20px; border-radius: 100px; border: 1px solid var(--border);
+        }
+        .hamburger {
+            background: none; border: none; color: white; font-size: 1.6rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            width: 44px; height: 44px; border-radius: 30px; transition: 0.2s;
+        }
+        .hamburger:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- PREMIUM SIDEBAR --- */
+        .side-menu {
+            position: fixed; top: 0; left: -100%; width: 85%; max-width: 340px; height: 100%;
+            background: rgba(8, 8, 10, 0.98); backdrop-filter: blur(24px);
+            z-index: 4000; transition: left 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            border-right: 1px solid rgba(16,185,129,0.3);
+            padding: 32px 24px 40px;
+            display: flex; flex-direction: column;
+            box-shadow: 10px 0 40px rgba(0,0,0,0.6);
+        }
+        .side-menu.open { left: 0; }
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); z-index: 3999; opacity: 0; visibility: hidden;
+            transition: 0.3s ease; backdrop-filter: blur(4px);
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .sidebar-logo {
+            font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border); letter-spacing: -0.5px;
+        }
+        .sidebar-logo span { color: var(--emerald-bright); }
+        .side-menu a {
+            color: var(--text-main); text-decoration: none; font-size: 1.2rem;
+            font-weight: 600; padding: 14px 0; margin: 4px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.25s; display: flex; align-items: center; gap: 14px;
+        }
+        .side-menu a i { width: 24px; color: var(--emerald-bright); font-size: 1.1rem; }
+        .side-menu a:hover { color: var(--emerald-bright); transform: translateX(8px); background: rgba(16,185,129,0.05); padding-left: 8px; border-radius: 12px; }
+        .sidebar-cta {
+            margin-top: auto; background: var(--emerald-bright); color: black;
+            padding: 14px; border-radius: 100px; text-align: center; font-weight: 800;
+            text-decoration: none; display: flex; align-items: center; justify-content: center;
+            gap: 8px; transition: 0.2s; margin-bottom: 20px;
+        }
+        .sidebar-cta:hover { transform: scale(1.02); background: #0fbb7a; }
+        .close-menu {
+            position: absolute; top: 24px; right: 24px; background: none; border: none;
+            color: white; font-size: 1.6rem; cursor: pointer; width: 40px; height: 40px;
+            border-radius: 30px; display: flex; align-items: center; justify-content: center;
+        }
+        .close-menu:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- STICKY CTA (mobile only) --- */
+        .sticky-cta {
+            position: fixed; bottom: 24px; right: 20px; z-index: 2500;
+            display: none; background: var(--emerald-bright); color: black;
+            padding: 12px 20px; border-radius: 100px; font-weight: 800;
+            text-decoration: none; font-size: 0.85rem; box-shadow: 0 8px 20px rgba(16,185,129,0.5);
+            backdrop-filter: blur(8px); transition: 0.2s; align-items: center; gap: 8px;
+        }
+        .sticky-cta:hover { transform: scale(1.05); background: #0fbb7a; }
+
+        /* --- HERO (with image background) --- */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            position: relative; 
+            padding-top: 88px;
+            box-sizing: border-box;
+        }
+        .hero-bg { 
+            position: absolute; 
+            inset: 0; 
+            background: url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, #064e3b80, #000000cc);
+            z-index: -1;
+        }
+        .hero-card {
+            background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(12px);
+            border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 48px;
+            padding: 2.8rem 2rem; max-width: 1000px; width: calc(100% - 2rem);
+            margin: 0 auto; box-shadow: 0 25px 45px -12px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+        }
+        .hero h1 { font-size: clamp(2.8rem, 8vw, 5.2rem); line-height: 1.1; font-weight: 800; letter-spacing: -2px; margin-bottom: 1.2rem; }
+        .hero .premium-tag { background: rgba(16,185,129,0.2); backdrop-filter: blur(8px); padding: 0.5rem 1.2rem; border-radius: 100px; display: inline-block; margin-bottom: 1.5rem; font-weight: 600; font-size: 0.8rem; border: 1px solid rgba(16,185,129,0.5); }
+        .hero p { color: rgba(255,255,245,0.85); font-size: 1.15rem; max-width: 650px; margin: 0 auto 1.5rem; }
+        .trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; margin: 1.8rem 0 1.5rem; font-size: 0.75rem; color: var(--text-muted); }
+        .trust-strip span { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.05); padding: 0.4rem 1rem; border-radius: 40px; }
+        .client-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 1.5rem; opacity: 0.7; }
+        .client-logos i { font-size: 1.8rem; color: var(--text-muted); transition: 0.2s; }
+
+        /* Buttons */
+        .btn-primary {
+            padding: 1rem 2.2rem; background: var(--emerald-bright); color: black;
+            border-radius: 100px; text-decoration: none; font-weight: 800;
+            display: inline-flex; align-items: center; gap: 10px; transition: var(--transition);
+            border: none; cursor: pointer; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(16,185,129,0.4);
+        }
+        .btn-primary:hover { transform: translateY(-3px); background: #0fbb7a; box-shadow: 0 12px 28px rgba(16,185,129,0.5); }
+        .btn-secondary {
+            background: transparent; border: 1.5px solid rgba(255,255,255,0.3);
+            color: white; padding: 0.9rem 1.8rem; border-radius: 100px;
+            text-decoration: none; font-weight: 600; transition: 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--emerald-bright); background: rgba(16,185,129,0.1); }
+
+        /* Sections */
+        .section-tag { color: var(--emerald-bright); font-weight: 800; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.2rem; display: block; text-align: center; }
+        .section-title { text-align: center; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -2px; margin-bottom: 1rem; }
+        .section-sub { text-align: center; color: var(--text-muted); max-width: 680px; margin: 0 auto 3rem; }
+
+        /* Service Cards with Images */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .ios-card {
+            background: var(--ios-card); backdrop-filter: blur(8px); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); padding: 1.8rem; transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .ios-card:hover { transform: translateY(-8px); background: rgba(44,44,46,0.9); border-color: var(--emerald-bright); box-shadow: 0 20px 35px -10px rgba(16,185,129,0.2); }
+        .card-img {
+            width: 100%; height: 160px; object-fit: cover; border-radius: 24px;
+            margin-bottom: 1.2rem; transition: transform 0.5s ease;
+        }
+        .ios-card:hover .card-img { transform: scale(1.02); }
+        .ios-card i { font-size: 2rem; color: var(--emerald-bright); margin-bottom: 0.8rem; display: inline-block; background: rgba(16,185,129,0.1); padding: 10px; border-radius: 20px; }
+        .ios-card h3 { font-size: 1.5rem; margin-bottom: 0.6rem; }
+        .ios-card p { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Stats Grid */
+        .stats-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 3rem 0; }
+        .stat-item { text-align: center; background: rgba(28,28,30,0.5); backdrop-filter: blur(12px); padding: 1.5rem; border-radius: 40px; min-width: 160px; border: 1px solid var(--border); transition: 0.3s; }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--emerald-bright); }
+        
+        /* FAQ */
+        .faq-item { background: rgba(28,28,30,0.6); border-radius: 28px; margin-bottom: 1rem; border: 1px solid var(--border); overflow: hidden; transition: 0.2s; }
+        .faq-question { padding: 1.4rem 1.8rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); }
+        .faq-question i { transition: transform 0.3s; color: var(--emerald-bright); }
+        .faq-answer { padding: 0 1.8rem 1.4rem; color: var(--text-muted); display: none; }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* Case Study / Results */
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .result-card { background: linear-gradient(145deg, #1c1c1e, #0a0a0c); border-radius: 32px; padding: 1.8rem; border: 1px solid var(--border); transition: 0.3s; text-align: center; }
+        .result-card:hover { border-color: var(--emerald-bright); transform: translateY(-5px); }
+        .result-number { font-size: 2.5rem; font-weight: 800; color: var(--emerald-bright); }
+
+        /* Final CTA */
+        .final-cta { background: linear-gradient(135deg, #0e2b22, #010101); border-radius: var(--radius-xl); padding: 3rem 2rem; margin: 60px 0 40px; border: 1px solid var(--emerald-bright); text-align: center; }
+
+        /* Premium Footer */
+        footer { padding: 70px 0 80px; background: #050505; border-radius: 44px 44px 0 0; border-top: 1px solid var(--border); margin-top: 60px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 3rem; }
+        .footer-col h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem; letter-spacing: -0.2px; color: white; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: var(--text-muted); text-decoration: none; transition: 0.2s; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--emerald-bright); transform: translateX(4px); display: inline-block; }
+        .contact-pill-btn { padding: 0.9rem; border-radius: 30px; text-decoration: none; display: flex; align-items: center; gap: 12px; font-weight: 700; color: white; margin-bottom: 1rem; background: #25D366; justify-content: center; transition: 0.2s; }
+        .contact-pill-btn.email { background: #007AFF; }
+        .contact-pill-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        .newsletter-group { display: flex; flex-direction: column; gap: 12px; margin-top: 1rem; }
+        .newsletter-group input { padding: 1rem; background: var(--ios-gray); border: 1px solid var(--border); border-radius: 30px; color: white; font-family: inherit; outline: none; transition: 0.2s; }
+        .newsletter-group input:focus { border-color: var(--emerald-bright); }
+        .newsletter-group .btn-primary { width: 100%; justify-content: center; padding: 0.9rem; margin-top: 0; }
+
+        /* Global Network Image */
+        .network-img {
+            width: 100%;
+            border-radius: 32px;
+            margin-top: 2rem;
+            border: 1px solid var(--border);
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .network-img:hover { opacity: 1; transform: scale(1.01); }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .navbar { display: none; }
+            .mobile-header { display: flex; }
+            .sticky-cta { display: flex; }
+            .hero { padding-top: 80px; }
+            .hero-card { padding: 1.8rem; margin: 0 1rem; }
+            .hero h1 { font-size: 2.3rem; }
+            .btn-primary, .btn-secondary { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: left; gap: 2rem; }
+            .footer-col { text-align: left; }
+            .contact-pill-btn { justify-content: flex-start; max-width: 280px; }
+            .stats-grid { gap: 1rem; }
+            .stat-item { padding: 1rem; min-width: 130px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.9rem; }
+            .container { padding: 0 1.25rem; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding-top: 70px; }
+            .hero h1 { font-size: 1.9rem; }
+            .hero-card { padding: 1.4rem; }
+        }
+        .star-rating { color: var(--gold); margin-top: 0.5rem; font-size: 0.8rem; }
+        .badge { background: rgba(255,255,255,0.05); padding: 0.3rem 0.9rem; border-radius: 100px; font-size: 0.7rem; }
+        .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="#" class="logo" style="font-size: 1.4rem;">VANGUARD<span>GLOBAL</span></a>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    </div>
+
+    <!-- Premium Sidebar -->
+    <div class="side-menu" id="sideMenu">
+        <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+        <div class="sidebar-logo">VANGUARD<span>GLOBAL</span></div>
+        <a href="#global-reach"><i class="fa-solid fa-globe"></i> Global Reach</a>
+        <a href="#services"><i class="fa-solid fa-ship"></i> Capabilities</a>
+        <a href="#case-results"><i class="fa-solid fa-chart-line"></i> Results</a>
+        <a href="#testimonials"><i class="fa-solid fa-star"></i> Testimonials</a>
+        <a href="#faq"><i class="fa-regular fa-circle-question"></i> FAQ</a>
+        <a href="#final-cta"><i class="fa-regular fa-clock"></i> Free Audit</a>
+        <a href="#contact"><i class="fa-solid fa-headset"></i> Contact</a>
+        <a href="#final-cta" class="sidebar-cta"><i class="fa-regular fa-calendar-check"></i> Free Trade Audit →</a>
+    </div>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Sticky CTA (mobile only) -->
+    <a href="#final-cta" class="sticky-cta"><i class="fa-regular fa-clock"></i> Free Audit</a>
+
+    <!-- Desktop Nav -->
+    <nav class="navbar">
+        <a href="#" class="logo">VANGUARD <span>GLOBAL</span></a>
+        <div class="nav-links">
+            <a href="#global-reach">Global Reach</a>
+            <a href="#services">Capabilities</a>
+            <a href="#case-results">Results</a>
+            <a href="#testimonials">Voices</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#final-cta" class="btn-primary" style="padding: 0.6rem 1.5rem;">Free Trade Audit</a>
+    </nav>
+
+    <!-- Hero Section with Background Image -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <div class="hero-card">
+                <div class="premium-tag"><i class="fa-regular fa-compass"></i> Since 2012 • Elite Trade Architects</div>
+                <h1>Global Trade.<br><span style="color:var(--emerald-bright)">Zero Friction.</span></h1>
+                <p>High-velocity import-export infrastructure for enterprises scaling across continents. Smart logistics, duty optimization, end-to-end command.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#final-cta" class="btn-primary">Free Trade Audit <i class="fa-regular fa-calendar-check"></i></a>
+                    <a href="#services" class="btn-secondary">Explore Ecosystem</a>
+                </div>
+                <div class="trust-strip">
+                    <span><i class="fa-regular fa-building"></i> Trusted by 380+ global businesses</span>
+                    <span><i class="fa-regular fa-flag"></i> 64+ countries</span>
+                    <span><i class="fa-solid fa-box"></i> 15.2k annual shipments</span>
+                </div>
+                <div class="client-logos">
+                    <i class="fa-brands fa-microsoft"></i> <i class="fa-brands fa-amazon"></i> <i class="fa-solid fa-industry"></i> <i class="fa-solid fa-oil-can"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Reach + Stats with Map Image -->
+    <section id="global-reach" style="padding: 80px 0 40px;">
+        <div class="container">
+            <span class="section-tag">Network Intelligence</span>
+            <h2 class="section-title">Global <span style="color:var(--emerald-bright)">Command</span> Center</h2>
+            <p class="section-sub">Operating across 4 continents with dedicated trade corridors, bonded warehouses, and strategic alliances.</p>
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-number">64+</div><div class="stat-label">Countries Served</div></div>
+                <div class="stat-item"><div class="stat-number">380+</div><div class="stat-label">Enterprise Clients</div></div>
+                <div class="stat-item"><div class="stat-number">15.2k</div><div class="stat-label">Annual Shipments</div></div>
+                <div class="stat-item"><div class="stat-number">99.3%</div><div class="stat-label">On-Time Delivery</div></div>
+            </div>
+            <!-- Global Network Image -->
+            <img src="https://images.unsplash.com/photo-1589519160732-57fc498494f8?q=80&w=2070&auto=format" alt="Global Trade Network" class="network-img">
+        </div>
+    </section>
+
+    <!-- Services Section with Card Images -->
+    <section id="services" style="padding: 60px 0 80px;">
+        <div class="container">
+            <span class="section-tag">Core Capabilities</span>
+            <h2 class="section-title">Engineered for <span style="color:var(--emerald-bright)">Global Scale</span></h2>
+            <div class="services-grid">
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format" alt="Import"><i class="fa-solid fa-chart-simple"></i><h3>Import Optimization</h3><p>Reduce duty leakage by 22% with HS code intelligence.</p></div>
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format" alt="Customs"><i class="fa-solid fa-gavel"></i><h3>Customs & Compliance</h3><p>Full regulatory navigation, penalty protection.</p></div>
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format" alt="Freight"><i class="fa-solid fa-ship"></i><h3>Multimodal Freight</h3><p>Ocean, air, rail — dynamic route switching.</p></div>
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1585167861806-ecba45771d2d?q=80&w=2070&auto=format" alt="Warehouse"><i class="fa-solid fa-warehouse"></i><h3>Smart Warehousing</h3><p>12 key trade zones with real-time visibility.</p></div>
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1526570207772-784d36084510?q=80&w=2070&auto=format" alt="Finance"><i class="fa-solid fa-coins"></i><h3>Trade Finance Bridge</h3><p>Invoice factoring & supply chain credit lines.</p></div>
+                <div class="ios-card"><img class="card-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format" alt="Risk"><i class="fa-solid fa-shield-haltered"></i><h3>Trade Risk Advisory</h3><p>Geopolitical hedge, currency volatility.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Results -->
+    <section id="case-results" style="padding: 40px 0 80px; background: #050505;">
+        <div class="container">
+            <span class="section-tag">Proven Outcomes</span>
+            <h2 class="section-title">Real <span style="color:var(--emerald-bright)">Results</span> for Global Leaders</h2>
+            <div class="results-grid">
+                <div class="result-card"><div class="result-number">-27%</div><p>Logistics costs reduced for Thorne Industries in 6 months</p><i class="fa-solid fa-chart-line" style="color:var(--emerald-bright); margin-top: 12px;"></i></div>
+                <div class="result-card"><div class="result-number">$2.3M</div><p>Saved in penalties & duty drawbacks for Apex Corp</p><i class="fa-regular fa-circle-check" style="color:var(--emerald-bright);"></i></div>
+                <div class="result-card"><div class="result-number">31%</div><p>Faster lead times across SEA–NA corridors</p><i class="fa-regular fa-clock" style="color:var(--emerald-bright);"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" style="padding: 80px 0;">
+        <div class="container">
+            <span class="section-tag">Trusted by Industry Leaders</span>
+            <h2 class="section-title">What Global <span style="color:var(--emerald-bright)">Executives</span> Say</h2>
+            <div class="services-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px,1fr));">
+                <div class="ios-card"><p>“Vanguard Global turned our chaotic logistics into a competitive advantage. 27% cost reduction.”</p><div><h4>Julian Thorne</h4><p style="color:var(--text-muted);">CEO, Thorne Industries</p></div><div class="star-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div>
+                <div class="ios-card"><p>“Their trade compliance desk saved us $2.3M in potential penalties and unlocked duty drawback.”</p><div><h4>Elena Vasquez</h4><p style="color:var(--text-muted);">Global Ops Director, Apex Corp</p></div><div class="star-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div></div>
+                <div class="ios-card"><p>“Unmatched responsiveness. They handle 200+ TEUs monthly without a single delay.”</p><div><h4>Marcus Koh</h4><p style="color:var(--text-muted);">VP Supply Chain, Stellar Group</p></div><div class="star-rating"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-alt"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="padding: 60px 0 80px; background: #050505;">
+        <div class="container">
+            <span class="section-tag">Insights</span>
+            <h2 class="section-title">Frequently Asked <span style="color:var(--emerald-bright)">Questions</span></h2>
+            <div style="max-width: 800px; margin: 2rem auto;">
+                <div class="faq-item"><div class="faq-question">What markets do you specialize in? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We operate across North America, Europe, Asia-Pacific, and Middle East with dedicated trade corridors and local compliance experts.</div></div>
+                <div class="faq-item"><div class="faq-question">How fast can you reduce my logistics costs? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Most clients see 15-25% cost reduction within the first 90 days through route optimization and duty strategies.</div></div>
+                <div class="faq-item"><div class="faq-question">Do you offer supply chain financing? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, we provide invoice factoring and credit lines up to $10M based on trade volume.</div></div>
+                <div class="faq-item"><div class="faq-question">What is the free audit process? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">We analyze your current logistics, tariffs, and transit efficiency in a 30-min strategy session — zero obligation.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <div class="container" id="final-cta">
+        <div class="final-cta">
+            <span class="section-tag" style="color: var(--gold);">⚡ Only 12 Spots</span>
+            <h2 style="font-size: clamp(1.8rem,5vw,2.8rem); font-weight: 800;">Free Logistics Audit – <span style="color:var(--emerald-bright)">Claim Yours Now</span></h2>
+            <p style="color: var(--text-muted); max-width: 550px; margin: 1rem auto;">Schedule a confidential strategy session with our senior trade engineers. Valued at $2,500 — zero cost for qualified enterprises.</p>
+            <a href="#contact" class="btn-primary" style="margin-top: 1.5rem; display: inline-flex;">Get My Free Audit →</a>
+            <div class="trust-badges"><span class="badge"><i class="fa-regular fa-clock"></i> 30-min strategy</span><span class="badge"><i class="fa-solid fa-lock"></i> NDA protected</span><span class="badge"><i class="fa-solid fa-award"></i> C-TPAT certified</span></div>
+        </div>
+    </div>
+
+    <!-- Premium Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo" style="font-size: 1.8rem;">VANGUARD<span>GLOBAL</span></a>
+                <p style="margin: 1rem 0 1.5rem; color: var(--text-muted);">High-velocity trade architecture & supply chain intelligence.</p>
+                <a href="https://wa.me/15551234567" class="contact-pill-btn whatsapp"><i class="fa-brands fa-whatsapp"></i> Direct Trade Line</a>
+                <a href="mailto:strategic@vanguardglobal.com" class="contact-pill-btn email"><i class="fa-solid fa-envelope"></i> strategic@vanguardglobal.com</a>
+            </div>
+            <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Import Consulting</a></li><li><a href="#">Export Strategy</a></li><li><a href="#">Market Intelligence</a></li><li><a href="#">Sourcing & Procurement</a></li></ul></div>
+            <div class="footer-col"><h4>Company</h4><ul><li><a href="#">Global Network</a></li><li><a href="#">Careers</a></li><li><a href="#">Case Studies</a></li><li><a href="#">ESG Commitment</a></li></ul></div>
+            <div class="footer-col"><h4>Trade Intel</h4><p style="color:var(--text-muted); font-size:0.85rem; margin-bottom: 0.5rem;">Weekly insights on tariffs, routes, and emerging markets.</p><div class="newsletter-group"><input type="email" placeholder="Work Email"><button class="btn-primary">Subscribe →</button></div></div>
+        </div>
+        <div style="text-align: center; margin-top: 60px; color: var(--text-muted); font-size: 0.7rem;">&copy; 2026 VANGUARD GLOBAL — Elite Trade Infrastructure. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburgerBtn');
+        const sideMenu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('menuOverlay');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        function openMenu() { sideMenu.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMenu() { sideMenu.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+        hamburger?.addEventListener('click', openMenu);
+        closeMenuBtn?.addEventListener('click', closeMenu);
+        overlay?.addEventListener('click', closeMenu);
+        document.querySelectorAll('.side-menu a').forEach(link => { link.addEventListener('click', closeMenu); });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => { q.parentElement.classList.toggle('active'); });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
+        document.querySelectorAll('section, .ios-card, .stat-item, .result-card, .faq-item, .final-cta, .network-img').forEach(el => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(28px)'; el.style.transition = 'all 0.6s cubic-bezier(0.2,0.9,0.4,1.1)';
+            observer.observe(el);
+        });
+        document.querySelectorAll('.hero-card').forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; observer.observe(el); });
+        
+        // Haptic feedback
+        document.querySelectorAll('.btn-primary, .btn-secondary, .sticky-cta, .sidebar-cta, .contact-pill-btn').forEach(btn => {
+            btn.addEventListener('click', () => { if (window.navigator.vibrate) window.navigator.vibrate(6); });
+        });
+    </script>
+</body>
+</html>
