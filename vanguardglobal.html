@@ -37,7 +37,6 @@
             -webkit-font-smoothing: antialiased;
             position: relative;
         }
-        /* Subtle world map background */
         body::before {
             content: "";
             position: fixed;
@@ -217,7 +216,7 @@
         .ios-card h3 { font-size: 1.5rem; margin-bottom: 0.6rem; }
         .ios-card p { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Stats Grid */
+        /* Stats Grid - Desktop */
         .stats-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin: 3rem 0; }
         .stat-item { text-align: center; background: rgba(28,28,30,0.5); backdrop-filter: blur(12px); padding: 1.5rem; border-radius: 40px; min-width: 160px; border: 1px solid var(--border); transition: 0.3s; }
         .stat-number { font-size: 2.8rem; font-weight: 800; color: var(--emerald-bright); }
@@ -266,7 +265,7 @@
         }
         .network-img:hover { opacity: 1; transform: scale(1.01); }
 
-        /* ========== MOBILE RESPONSIVE: FIX HERO TALL/STRETCHED ========== */
+        /* ========== MOBILE RESPONSIVE FIXES ========== */
         @media (max-width: 850px) {
             .navbar { display: none; }
             .mobile-header { display: flex; }
@@ -274,12 +273,12 @@
             
             /* Hero: remove full viewport height, make content-based, compact card */
             .hero {
-                min-height: auto;           /* Remove 100vh */
-                padding: 100px 0 60px;      /* Balanced top/bottom spacing */
+                min-height: auto;
+                padding: 100px 0 60px;      /* Increased top padding to clear fixed mobile header (approx 70px) */
                 align-items: center;
             }
             .hero-card {
-                max-width: 420px;            /* Centered compact card */
+                max-width: 420px;
                 width: calc(100% - 1.5rem);
                 padding: 1.8rem 1.2rem;
                 border-radius: 36px;
@@ -300,7 +299,7 @@
                 margin-bottom: 1.2rem;
                 line-height: 1.4;
             }
-            /* Buttons: stack vertically, full width */
+            /* Buttons stack vertically, full width */
             .hero .btn-primary, 
             .hero .btn-secondary {
                 display: flex;
@@ -325,32 +324,48 @@
             .client-logos i {
                 font-size: 1.3rem;
             }
-            /* Other mobile adjustments */
-            .footer-grid { grid-template-columns: 1fr; text-align: left; gap: 2rem; }
-            .footer-col { text-align: left; }
-            .contact-pill-btn { justify-content: flex-start; max-width: 280px; }
-            .stats-grid { gap: 1rem; }
-            .stat-item { padding: 1rem; min-width: 130px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 1.8rem; }
-            .container { padding: 0 1rem; }
-            .hero-card .btn-primary, 
-            .hero-card .btn-secondary {
-                width: 100%;
-            }
-            /* Button group inside hero */
+            /* Button group inside hero - stack vertically */
             .hero-card div:has(.btn-primary, .btn-secondary) {
                 flex-direction: column;
                 gap: 0.8rem;
             }
+            
+            /* Stats Grid: 2 columns on mobile */
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin: 2rem 0;
+            }
+            .stat-item {
+                padding: 1rem 0.5rem;
+                min-width: auto;
+                border-radius: 28px;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+            .stat-label {
+                font-size: 0.75rem;
+            }
+            
+            /* Other mobile adjustments */
+            .footer-grid { grid-template-columns: 1fr; text-align: left; gap: 2rem; }
+            .footer-col { text-align: left; }
+            .contact-pill-btn { justify-content: flex-start; max-width: 280px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
+            .container { padding: 0 1rem; }
         }
         
         /* Extra small devices */
         @media (max-width: 480px) {
-            .hero { padding: 80px 0 50px; }
+            .hero { padding: 90px 0 50px; }
             .hero h1 { font-size: 1.8rem; }
             .hero-card { padding: 1.4rem 1rem; }
             .hero p { font-size: 0.9rem; }
+            .stat-number { font-size: 1.6rem; }
+            .stat-label { font-size: 0.7rem; }
         }
         
         .star-rating { color: var(--gold); margin-top: 0.5rem; font-size: 0.8rem; }
