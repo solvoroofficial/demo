@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobalTrade Advisors | Premium Import-Export Consulting</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #002147;
+      --gold: #c5a059;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; color: var(--text); overflow-x: hidden; }
+    h1, h2, h3, .nav-link { font-family: 'Poppins', sans-serif; }
+    .navy { color: var(--navy); }
+    .bg-navy { background-color: var(--navy); }
+    .gold { color: var(--gold); }
+    .bg-gold { background-color: var(--gold); }
+    .border-gold { border-color: var(--gold); }
+
+    .glass-nav {
+      background: rgba(255,255,255,0.84);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .premium-card {
+      transition: all .35s cubic-bezier(.165,.84,.44,1);
+      box-shadow: 0 8px 24px rgba(0,33,71,.06);
+    }
+    .premium-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,33,71,.12);
+    }
+
+    .soft-grid {
+      background-image: linear-gradient(to right, rgba(2,6,23,.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(2,6,23,.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    [x-cloak] { display: none !important; }
+
+    .section-title {
+      letter-spacing: -0.04em;
+    }
+
+    .footer-link {
+      color: #94a3b8;
+      transition: color .2s ease;
+    }
+    .footer-link:hover { color: var(--gold); }
+
+    .sidebar-shadow {
+      box-shadow: -18px 0 40px rgba(2,6,23,.18);
+    }
+
+    @media (min-width: 1024px) {
+      .desktop-hero-card {
+        max-width: 980px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .mobile-hero {
+        min-height: auto;
+        padding-top: 7.5rem;
+        padding-bottom: 4.5rem;
+      }
+      .mobile-stack-center {
+        text-align: center;
+      }
+      .mobile-btns a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body x-data="{ mobileMenuOpen: false }" class="bg-white text-slate-900 overflow-x-hidden">
+  <!-- Desktop Header -->
+  <header class="fixed top-0 left-0 w-full z-50">
+    <div class="hidden md:block glass-nav border-b border-slate-100 shadow-sm">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <a href="#" class="flex items-center space-x-2 group cursor-pointer">
+            <div class="w-10 h-10 bg-navy flex items-center justify-center rounded-lg transition-transform group-hover:rotate-12">
+              <i data-lucide="globe" class="text-white w-6 h-6"></i>
+            </div>
+            <span class="font-bold text-xl tracking-tight navy uppercase">GlobalTrade</span>
+          </a>
+
+          <nav class="flex items-center space-x-10">
+            <a href="#services" class="nav-link text-sm font-medium text-slate-700 hover:gold transition">Services</a>
+            <a href="#why" class="nav-link text-sm font-medium text-slate-700 hover:gold transition">Why Us</a>
+            <a href="#faq" class="nav-link text-sm font-medium text-slate-700 hover:gold transition">FAQ</a>
+            <a href="#contact" class="bg-navy text-white px-7 py-3 rounded-full font-semibold text-sm hover:bg-slate-800 transition-all shadow-lg hover:shadow-indigo-900/20">Book Strategy Call</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-3 left-3 right-3 z-50 glass-nav border border-slate-100 rounded-full shadow-lg">
+      <div class="px-4 py-3 flex items-center justify-between">
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-9 h-9 bg-navy flex items-center justify-center rounded-lg">
+            <i data-lucide="globe" class="text-white w-5 h-5"></i>
+          </div>
+          <span class="font-bold text-base tracking-tight navy uppercase">GlobalTrade</span>
+        </a>
+
+        <button @click="mobileMenuOpen = true" class="p-2 text-navy" aria-label="Open menu">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Premium Mobile Sidebar -->
+    <div x-cloak
+         x-show="mobileMenuOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-x-full"
+         x-transition:enter-end="opacity-100 translate-x-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-x-0"
+         x-transition:leave-end="opacity-0 translate-x-full"
+         class="fixed inset-0 z-[60] md:hidden">
+      <div class="absolute inset-0 bg-slate-950/55 backdrop-blur-[3px]" @click="mobileMenuOpen = false"></div>
+      <aside class="absolute top-0 right-0 h-full w-[86%] max-w-sm bg-[#07111f] text-white sidebar-shadow border-l border-white/10 flex flex-col">
+        <div class="p-6 border-b border-white/10 flex items-center justify-between">
+          <div>
+            <div class="text-xs uppercase tracking-[0.3em] text-slate-400 mb-1">GlobalTrade</div>
+            <div class="text-lg font-bold">Premium Navigation</div>
+          </div>
+          <button @click="mobileMenuOpen = false" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center" aria-label="Close menu">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <nav class="flex-1 px-6 py-8 flex flex-col gap-2">
+          <a href="#services" @click="mobileMenuOpen = false" class="px-4 py-4 rounded-2xl text-lg font-semibold bg-white/0 hover:bg-white/6 transition">Services</a>
+          <a href="#why" @click="mobileMenuOpen = false" class="px-4 py-4 rounded-2xl text-lg font-semibold bg-white/0 hover:bg-white/6 transition">Why Us</a>
+          <a href="#faq" @click="mobileMenuOpen = false" class="px-4 py-4 rounded-2xl text-lg font-semibold bg-white/0 hover:bg-white/6 transition">FAQ</a>
+          <a href="#contact" @click="mobileMenuOpen = false" class="px-4 py-4 rounded-2xl text-lg font-semibold bg-white/0 hover:bg-white/6 transition">Contact</a>
+        </nav>
+
+        <div class="p-6 border-t border-white/10">
+          <a href="#contact" @click="mobileMenuOpen = false" class="block w-full text-center bg-gold text-white py-4 rounded-2xl font-bold shadow-lg shadow-amber-500/15">Free Consultation</a>
+          <p class="text-xs text-slate-400 mt-4 leading-relaxed">Trusted import-export advisory for businesses that need clarity, compliance, and scale.</p>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative mobile-hero pt-28 md:pt-36 lg:pt-44 pb-16 lg:pb-24 px-4 md:px-6 soft-grid">
+    <div class="max-w-7xl mx-auto text-center">
+      <div class="inline-flex items-center space-x-2 bg-slate-50 border border-slate-100 px-4 py-2 rounded-full mb-6">
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Expert Trade Consulting</span>
+      </div>
+
+      <div class="desktop-hero-card mx-auto bg-white/90 border border-slate-100 rounded-[2rem] md:rounded-[2.75rem] shadow-[0_24px_60px_rgba(2,6,23,.06)] px-5 sm:px-8 md:px-12 py-10 md:py-14">
+        <h1 class="section-title text-4xl md:text-6xl lg:text-7xl font-bold navy-custom mb-6 leading-[1.05]">
+          Expand Your Business <br>
+          <span class="gold-custom">Globally with Confidence</span>
+        </h1>
+        <p class="text-base md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+          We bridge the gap between local production and international demand. Reduce risk, navigate customs, and scale your margins with our proven trade framework.
+        </p>
+
+        <div class="mobile-btns flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#contact" class="bg-navy text-white px-8 md:px-10 py-4 md:py-5 rounded-xl font-bold text-base md:text-lg hover:scale-[1.02] transition-transform shadow-xl">Start Your Journey</a>
+          <a href="#services" class="border border-slate-200 navy px-8 md:px-10 py-4 md:py-5 rounded-xl font-bold text-base md:text-lg hover:bg-slate-50 transition">Explore Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 md:py-24 bg-slate-50/60 border-y border-slate-100 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-14 md:mb-20">
+        <h2 class="section-title text-3xl md:text-4xl font-bold navy-custom mb-4">Core Trade Solutions</h2>
+        <div class="h-1 w-20 bg-gold-custom mx-auto mb-6"></div>
+        <p class="text-slate-500 text-base md:text-lg">Comprehensive end-to-end support for modern businesses entering the global marketplace.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div class="premium-card bg-white p-8 md:p-10 rounded-2xl border border-slate-100">
+          <i data-lucide="ship" class="gold-custom w-10 h-10 mb-6"></i>
+          <h3 class="text-xl font-bold navy-custom mb-4">Import Strategy</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Optimization of tariff classifications and strategic sourcing to protect your bottom line.</p>
+        </div>
+        <div class="premium-card bg-white p-8 md:p-10 rounded-2xl border border-slate-100">
+          <i data-lucide="trending-up" class="gold-custom w-10 h-10 mb-6"></i>
+          <h3 class="text-xl font-bold navy-custom mb-4">Export Growth</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Full-scale market entry roadmaps and distribution network setups in 45+ countries.</p>
+        </div>
+        <div class="premium-card bg-white p-8 md:p-10 rounded-2xl border border-slate-100">
+          <i data-lucide="shield-check" class="gold-custom w-10 h-10 mb-6"></i>
+          <h3 class="text-xl font-bold navy-custom mb-4">Compliance & Legal</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Zero-delay customs documentation and international trade law advisory services.</p>
+        </div>
+        <div class="premium-card bg-white p-8 md:p-10 rounded-2xl border border-slate-100">
+          <i data-lucide="search" class="gold-custom w-10 h-10 mb-6"></i>
+          <h3 class="text-xl font-bold navy-custom mb-4">Supplier Audit</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Rigorous background checks and on-site factory inspections to ensure quality control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section id="why" class="py-20 md:py-24 px-4 md:px-6 overflow-hidden bg-white">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div class="relative order-2 lg:order-1">
+        <div class="absolute -top-8 -left-6 md:-top-10 md:-left-10 w-32 h-32 md:w-40 md:h-40 bg-gold-custom/10 rounded-full blur-3xl"></div>
+        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=1200" class="rounded-3xl shadow-2xl relative z-10 w-full object-cover h-[320px] sm:h-[420px] lg:h-[500px]" alt="Logistics Hub">
+      </div>
+      <div class="order-1 lg:order-2">
+        <h2 class="section-title text-3xl md:text-4xl font-bold navy-custom mb-8">Why Industry Leaders <br>Partner With Us</h2>
+        <div class="space-y-8">
+          <div class="flex group">
+            <div class="w-12 h-12 flex-shrink-0 bg-slate-50 rounded-full flex items-center justify-center group-hover:bg-navy transition-colors">
+              <i data-lucide="zap" class="gold-custom w-6 h-6"></i>
+            </div>
+            <div class="ml-6">
+              <h4 class="font-bold text-lg navy-custom mb-1">20% Average Cost Reduction</h4>
+              <p class="text-slate-500">We optimize logistics routes and customs duties to save your capital.</p>
+            </div>
+          </div>
+          <div class="flex group">
+            <div class="w-12 h-12 flex-shrink-0 bg-slate-50 rounded-full flex items-center justify-center group-hover:bg-navy transition-colors">
+              <i data-lucide="clock" class="gold-custom w-6 h-6"></i>
+            </div>
+            <div class="ml-6">
+              <h4 class="font-bold text-lg navy-custom mb-1">Faster Time-to-Market</h4>
+              <p class="text-slate-500">Bypass red tape. Our network clears documentation faster than the average process.</p>
+            </div>
+          </div>
+          <div class="flex group">
+            <div class="w-12 h-12 flex-shrink-0 bg-slate-50 rounded-full flex items-center justify-center group-hover:bg-navy transition-colors">
+              <i data-lucide="check-circle" class="gold-custom w-6 h-6"></i>
+            </div>
+            <div class="ml-6">
+              <h4 class="font-bold text-lg navy-custom mb-1">100% Risk Mitigation</h4>
+              <p class="text-slate-500">Every supplier is verified, every contract is vetted, and every shipment is insured.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 md:py-24 bg-slate-50/60 px-4 md:px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-title text-3xl font-bold navy-custom mb-12 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div x-data="{ open: false }" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+          <button @click="open = !open" class="w-full flex justify-between items-center p-5 md:p-6 text-left font-bold navy-custom gap-4">
+            <span>What regions do you specialize in?</span>
+            <i data-lucide="chevron-down" class="shrink-0 transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-show="open" x-collapse class="px-5 md:px-6 pb-5 md:pb-6 text-slate-500 leading-relaxed">
+            We have strong operational networks in North America, Europe, SE Asia, and the Middle East, while supporting clients globally.
+          </div>
+        </div>
+        <div x-data="{ open: false }" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+          <button @click="open = !open" class="w-full flex justify-between items-center p-5 md:p-6 text-left font-bold navy-custom gap-4">
+            <span>How do you verify international suppliers?</span>
+            <i data-lucide="chevron-down" class="shrink-0 transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-show="open" x-collapse class="px-5 md:px-6 pb-5 md:pb-6 text-slate-500 leading-relaxed">
+            Our local agents perform on-site visits, financial solvency audits, and manufacturing capacity checks before we recommend suppliers.
+          </div>
+        </div>
+        <div x-data="{ open: false }" class="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+          <button @click="open = !open" class="w-full flex justify-between items-center p-5 md:p-6 text-left font-bold navy-custom gap-4">
+            <span>Do you handle customs and compliance?</span>
+            <i data-lucide="chevron-down" class="shrink-0 transition-transform duration-300" :class="open ? 'rotate-180' : ''"></i>
+          </button>
+          <div x-show="open" x-collapse class="px-5 md:px-6 pb-5 md:pb-6 text-slate-500 leading-relaxed">
+            Yes. We manage documentation, compliance reviews, tariff checks, and risk controls for a smoother clearance process.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-16 md:py-20 px-4 md:px-6 bg-white">
+    <div class="max-w-7xl mx-auto bg-navy rounded-[28px] md:rounded-[40px] p-8 md:p-12 lg:p-24 text-center relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+      <div class="relative z-10">
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8">Ready to Scale Your Trade Volume?</h2>
+        <p class="text-indigo-100 text-base md:text-lg mb-10 md:mb-12 max-w-2xl mx-auto italic">The best time to expand globally was yesterday. The second best time is now.</p>
+        <a href="#contact" class="inline-block bg-gold text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-bold text-base md:text-lg hover:shadow-2xl transition hover:scale-105">Book Your Strategy Session</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 md:py-24 px-4 md:px-6 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col lg:flex-row bg-white rounded-3xl border border-slate-100 shadow-2xl overflow-hidden">
+      <div class="lg:w-1/3 bg-navy p-8 md:p-12 text-white flex flex-col">
+        <h3 class="text-3xl font-bold mb-6">Let's Connect</h3>
+        <p class="text-slate-300 mb-10 leading-relaxed">Our experts typically respond within 4 business hours to all inquiries.</p>
+        <div class="space-y-6 mt-auto">
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center"><i data-lucide="phone" class="w-5 h-5"></i></div>
+            <span>+1 (888) TRADE-PRO</span>
+          </div>
+          <div class="flex items-center space-x-4">
+            <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center"><i data-lucide="mail" class="w-5 h-5"></i></div>
+            <span>expert@globaltrade.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-2/3 p-8 md:p-16">
+        <form class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Full Name</label>
+              <input type="text" class="w-full bg-slate-50 border-0 p-4 rounded-xl focus:ring-2 focus:ring-gold outline-none" placeholder="Johnathan Smith">
+            </div>
+            <div class="space-y-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Email Address</label>
+              <input type="email" class="w-full bg-slate-50 border-0 p-4 rounded-xl focus:ring-2 focus:ring-gold outline-none" placeholder="john@company.com">
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Services Interested In</label>
+            <select class="w-full bg-slate-50 border-0 p-4 rounded-xl focus:ring-2 focus:ring-gold outline-none appearance-none">
+              <option>Import Consulting</option>
+              <option>Export Strategy</option>
+              <option>Customs Clearance</option>
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Tell us about your project</label>
+            <textarea class="w-full bg-slate-50 border-0 p-4 rounded-xl focus:ring-2 focus:ring-gold outline-none h-32" placeholder="Describe your trade goals..."></textarea>
+          </div>
+          <button class="w-full bg-gold text-white py-5 rounded-xl font-bold text-lg hover:bg-[#b38e4a] transition-all shadow-xl shadow-amber-500/20">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white py-12 px-4 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 items-start">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div class="w-10 h-10 bg-navy flex items-center justify-center rounded-lg">
+              <i data-lucide="globe" class="text-white w-6 h-6"></i>
+            </div>
+            <span class="font-bold text-xl tracking-tight navy uppercase">GlobalTrade</span>
+          </div>
+          <p class="text-slate-500 leading-relaxed max-w-sm">Premium import-export consulting for businesses that need clarity, compliance, and global reach.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold navy mb-4">Services</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#services" class="footer-link">Import Consulting</a></li>
+            <li><a href="#services" class="footer-link">Export Strategy</a></li>
+            <li><a href="#services" class="footer-link">Compliance Advisory</a></li>
+            <li><a href="#services" class="footer-link">Supplier Audit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold navy mb-4">Company</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#why" class="footer-link">Why Us</a></li>
+            <li><a href="#faq" class="footer-link">FAQ</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+            <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold navy mb-4">Get Updates</h4>
+          <p class="text-slate-500 text-sm mb-4">Weekly trade insights, route updates, and market intelligence.</p>
+          <input type="email" placeholder="Work Email" class="w-full bg-slate-50 border border-slate-100 p-4 rounded-xl mb-3 focus:ring-2 focus:ring-gold outline-none">
+          <button class="w-full bg-navy text-white py-4 rounded-xl font-bold hover:bg-slate-800 transition">Subscribe</button>
+        </div>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
+        <div><span class="font-bold navy">© 2026 GLOBALTRADE ADVISORS.</span></div>
+        <div class="flex flex-wrap gap-6">
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Market News</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
