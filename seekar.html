@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEEKAR Properties — Premium Real Estate in Bhopal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-900: #0a1628;
+            --navy-800: #0f1d36;
+            --navy-700: #152240;
+            --gold-400: #c8a45c;
+            --gold-300: #d4af6e;
+            --gold-100: #f0e4cc;
+            --white: #ffffff;
+            --gray-25: #fafbfc;
+            --gray-50: #f6f7f9;
+            --gray-100: #e8eaef;
+            --gray-200: #d5d9e0;
+            --gray-400: #8f96a3;
+            --gray-500: #636a76;
+            --gray-600: #484e58;
+            --radius-xs: 6px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --radius-xl: 28px;
+            --radius-2xl: 36px;
+            --radius-full: 9999px;
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 40px;
+            --space-6: 48px;
+            --space-8: 64px;
+            --space-9: 80px;
+            --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --bottom-nav-height: 68px;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--white);
+            color: var(--gray-600);
+            line-height: 1.6;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: var(--bottom-nav-height);
+            }
+        }
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+        }
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1320px;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--space-2);
+            }
+        }
+
+        /* Typography */
+        .heading-xl {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+            color: var(--navy-900);
+        }
+        @media (max-width: 768px) {
+            .heading-xl {
+                font-size: 1.9rem;
+                line-height: 1.12;
+                color: white;
+                text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+            }
+        }
+        .heading-lg {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+            font-weight: 600;
+            line-height: 1.18;
+            letter-spacing: -0.015em;
+            color: var(--navy-900);
+        }
+        @media (max-width: 768px) {
+            .heading-lg {
+                font-size: 1.4rem;
+            }
+        }
+        .section-label {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold-400);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: var(--space-1);
+        }
+        .section-label::before {
+            content: '';
+            width: 14px;
+            height: 1.5px;
+            background: var(--gold-400);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            transition: all var(--transition-smooth);
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--navy-900);
+            color: var(--white);
+            box-shadow: 0 4px 18px rgba(10,22,40,0.18);
+        }
+        .btn-primary:hover {
+            background: var(--navy-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(10,22,40,0.28);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #c8a45c 0%, #d4af6e 40%, #b8943e 100%);
+            color: var(--white);
+            box-shadow: 0 4px 18px rgba(200,164,92,0.22);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--navy-900);
+            border: 2px solid var(--navy-900);
+        }
+        .btn-outline:hover {
+            background: var(--navy-900);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        .btn-lg {
+            padding: 15px 32px;
+            font-size: 0.92rem;
+            border-radius: var(--radius-md);
+        }
+        @media (max-width: 768px) {
+            .btn-lg {
+                width: 100%;
+                justify-content: center;
+                padding: 15px 28px;
+                border-radius: var(--radius-lg);
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ── TOP NAVBAR ── */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 1px 12px rgba(0,0,0,0.03);
+            padding: var(--space-1) 0;
+        }
+        .top-nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 var(--space-3);
+            gap: var(--space-3);
+        }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            text-decoration: none;
+        }
+        .nav-logo span {
+            color: var(--gold-400);
+        }
+        .nav-pills {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .nav-pill {
+            flex-shrink: 0;
+            padding: 7px 15px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-family: var(--font-sans);
+        }
+        .nav-pill.active-pill {
+            background: var(--navy-900);
+            color: var(--white);
+            font-weight: 600;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-1);
+            flex-shrink: 0;
+        }
+        .nav-search-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--gray-500);
+        }
+        .nav-contact-btn {
+            padding: 8px 18px;
+            background: var(--navy-900);
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* ── BOTTOM NAV (MOBILE) ── */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 998;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(22px);
+            border-top: 1px solid rgba(0,0,0,0.06);
+            height: var(--bottom-nav-height);
+            padding: 0 var(--space-1);
+        }
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+        }
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            text-decoration: none;
+            color: var(--gray-400);
+            font-size: 0.62rem;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: var(--radius-sm);
+        }
+        .bottom-nav-item.active {
+            color: var(--navy-900);
+            font-weight: 600;
+        }
+        .bottom-nav-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding-top: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(180deg, #fafbfd 0%, #ffffff 40%, #f8f9fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 0;
+                min-height: 100vh;
+                background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80') center/cover no-repeat;
+                position: relative;
+                align-items: flex-end;
+                padding-bottom: var(--space-5);
+            }
+            .hero::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(180deg, rgba(10,22,40,0.4) 0%, rgba(10,22,40,0.75) 70%);
+                z-index: 0;
+            }
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-2);
+            }
+        }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+        @media (max-width: 768px) {
+            .hero-left {
+                color: white;
+                text-align: center;
+                align-items: center;
+                padding-top: 120px;
+            }
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: white;
+            width: fit-content;
+        }
+        @media (max-width: 768px) {
+            .hero-badge {
+                background: rgba(255,255,255,0.2);
+                color: white;
+                border-color: rgba(255,255,255,0.35);
+            }
+            .hero-badge-dot {
+                background: var(--gold-400);
+            }
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+            max-width: 420px;
+        }
+        @media (max-width: 768px) {
+            .hero-subtitle {
+                color: rgba(255,255,255,0.85);
+                max-width: 100%;
+                font-size: 0.9rem;
+            }
+        }
+        .hero-search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 6px 6px 6px 18px;
+            box-shadow: 0 8px 35px rgba(10,22,40,0.06);
+            max-width: 460px;
+            margin-top: var(--space-1);
+        }
+        @media (max-width: 768px) {
+            .hero-search-bar {
+                max-width: 100%;
+                width: 100%;
+                background: rgba(255,255,255,0.95);
+                backdrop-filter: blur(10px);
+                border: none;
+            }
+        }
+        .hero-search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            color: var(--gray-700);
+            background: transparent;
+        }
+        .hero-search-submit {
+            padding: 12px 22px;
+            background: var(--navy-900);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .hero-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .hero-right {
+                display: none;
+            }
+        }
+        .hero-image-card {
+            width: 100%;
+            max-width: 520px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(10,22,40,0.1);
+            background: var(--white);
+        }
+        .hero-image-card-img {
+            width: 100%;
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80') center/cover no-repeat;
+            position: relative;
+        }
+        .hero-image-card-body {
+            padding: var(--space-3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hero-card-price {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .hero-card-loc {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+        }
+        .hero-floating-stat {
+            position: absolute;
+            z-index: 5;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--radius-md);
+            padding: 10px 15px;
+            box-shadow: 0 6px 30px rgba(10,22,40,0.06);
+        }
+        .fs-1 {
+            top: 5%;
+            right: -4%;
+        }
+        .fs-2 {
+            bottom: 20%;
+            left: -6%;
+        }
+        .fs-value {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--navy-900);
+        }
+
+        /* Sections */
+        .section {
+            padding: var(--space-9) 0;
+        }
+        @media (max-width: 768px) {
+            .section {
+                padding: var(--space-6) 0;
+            }
+        }
+        .section-header {
+            margin-bottom: var(--space-5);
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .section-header {
+                margin-bottom: var(--space-3);
+                text-align: left;
+            }
+        }
+
+        /* Categories */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            gap: var(--space-2);
+        }
+        @media (max-width:1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        @media (max-width:768px) {
+            .categories-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        .category-card {
+            aspect-ratio: 1/1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--space-2);
+            background-size: cover;
+            background-position: center;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(10,22,40,0.12);
+        }
+        .category-card-label {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .category-card-count {
+            position: relative;
+            z-index: 2;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        /* Property cards */
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: var(--space-3);
+        }
+        @media (max-width:1024px) {
+            .property-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media (max-width:768px) {
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .property-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--gray-100);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+        }
+        .property-card:hover {
+            box-shadow: 0 16px 45px rgba(10,22,40,0.08);
+            border-color: rgba(200,164,92,0.2);
+            transform: translateY(-3px);
+        }
+        .property-card-img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+        .property-card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--navy-900);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            z-index: 2;
+        }
+        .property-card-badge.gold {
+            background: var(--gold-400);
+            color: var(--navy-900);
+        }
+        .property-card-body {
+            padding: var(--space-2) var(--space-3);
+        }
+        .property-card-price {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .property-card-loc {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+        }
+        .property-card-meta {
+            display: flex;
+            gap: var(--space-2);
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            flex-wrap: wrap;
+        }
+
+        /* Locations */
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: var(--space-2);
+        }
+        @media (max-width:1024px) {
+            .locations-grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        @media (max-width:768px) {
+            .locations-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        .location-card {
+            aspect-ratio: 1/1.1;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--space-2);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .location-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 38px rgba(10,22,40,0.14);
+        }
+        .location-card-label {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        .location-card-count {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.68rem;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap: var(--space-2);
+        }
+        @media (max-width:1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3,1fr);
+            }
+        }
+        @media (max-width:768px) {
+            .services-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+        }
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--gold-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-400);
+            margin: 0 auto 8px;
+        }
+        .service-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .service-card h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+
+        /* Why */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: var(--space-3);
+        }
+        @media (max-width:1024px) {
+            .why-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+        @media (max-width:768px) {
+            .why-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-1);
+            }
+        }
+        .why-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-lg);
+            padding: var(--space-3);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-2);
+        }
+        .why-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--gold-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-400);
+        }
+        .why-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Stats */
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-xl);
+            padding: var(--space-5) var(--space-3);
+            box-shadow: 0 4px 24px rgba(10,22,40,0.03);
+        }
+        @media (max-width:768px) {
+            .stats-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                text-align: center;
+            }
+        }
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy-900);
+        }
+        .stat-value .plus {
+            color: var(--gold-400);
+        }
+        .stat-label {
+            font-size: 0.74rem;
+            color: var(--gray-400);
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--navy-900);
+            border-radius: var(--radius-2xl);
+            margin: var(--space-8) auto;
+            padding: var(--space-8) var(--space-5);
+            text-align: center;
+            max-width: 1240px;
+        }
+        .cta-section h2 {
+            color: white;
+        }
+        .cta-sub {
+            color: rgba(255,255,255,0.65);
+            margin-top: 8px;
+        }
+        .cta-btns {
+            display: flex;
+            gap: var(--space-2);
+            justify-content: center;
+            margin-top: var(--space-3);
+        }
+        @media (max-width:768px) {
+            .cta-btns {
+                flex-direction: column;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-25);
+            border-top: 1px solid var(--gray-100);
+            padding: var(--space-6) 0 var(--space-3);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.2fr;
+            gap: var(--space-4);
+        }
+        @media (max-width:768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .footer-col h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--navy-900);
+            margin-bottom: var(--space-2);
+            font-weight: 700;
+        }
+        .footer-col ul {
+            list-style: none;
+            font-size: 0.82rem;
+            color: var(--gray-500);
+        }
+        .footer-col ul li {
+            margin-bottom: 6px;
+        }
+        .footer-col ul li a {
+            text-decoration: none;
+            color: var(--gray-500);
+            transition: color var(--transition-fast);
+        }
+        .footer-col ul li a:hover {
+            color: var(--navy-900);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--space-3);
+            margin-top: var(--space-4);
+            border-top: 1px solid var(--gray-200);
+            font-size: 0.72rem;
+            color: var(--gray-400);
+        }
+
+        /* Image banner */
+        .image-banner {
+            height: 320px;
+            background: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .image-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10,22,40,0.5);
+        }
+        .image-banner-content {
+            position: relative;
+            z-index: 1;
+        }
+        .image-banner-content h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+        }
+        @media (max-width:768px) {
+            .image-banner {
+                height: 220px;
+            }
+            .image-banner-content h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav" id="topNav">
+        <div class="top-nav-inner">
+            <a href="#" class="nav-logo">SEEKAR<span>.</span></a>
+            <div class="nav-pills" id="navPills">
+                <button class="nav-pill active-pill" data-filter="all">All</button>
+                <button class="nav-pill" data-filter="buy">Buy</button>
+                <button class="nav-pill" data-filter="rent">Rent</button>
+                <button class="nav-pill" data-filter="sell">Sell</button>
+                <button class="nav-pill" data-filter="invest">Invest</button>
+                <button class="nav-pill" data-filter="management">Management</button>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-search-btn" onclick="document.getElementById('heroSearch').focus()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <a href="tel:+919981544577" class="nav-contact-btn">Inquiry</a>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="#hero" class="bottom-nav-item active"><svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/></svg> Home</a>
+        <a href="#properties" class="bottom-nav-item"><svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="16" rx="2"/></svg> Properties</a>
+        <a href="#categories" class="bottom-nav-item"><svg class="bottom-nav-icon" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/></svg> Buy</a>
+        <a href="#categories" class="bottom-nav-item"><svg class="bottom-nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> Rent</a>
+        <a href="tel:+919981544577" class="bottom-nav-item"><svg class="bottom-nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/></svg> Contact</a>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <div class="hero-badge"><span class="hero-badge-dot"></span> Bhopal's Most Trusted</div>
+                    <h1 class="heading-xl">Find Your Dream<br>Property in Bhopal</h1>
+                    <p class="hero-subtitle">Premium real estate solutions — buy, rent, sell, or invest with Bhopal's most trusted property partner.</p>
+                    <div class="hero-search-bar">
+                        <input type="text" id="heroSearch" placeholder="Search by location, property type...">
+                        <button class="hero-search-submit">Search</button>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div style="position:relative;">
+                        <div class="hero-image-card">
+                            <div class="hero-image-card-img"></div>
+                            <div class="hero-image-card-body">
+                                <div><div class="hero-card-price">₹1.25 Cr</div><div class="hero-card-loc">Arera Colony, Bhopal</div></div>
+                                <span style="font-size:0.7rem;font-weight:600;color:var(--gold-400);background:rgba(200,164,92,0.08);padding:3px 10px;border-radius:20px;">Premium</span>
+                            </div>
+                        </div>
+                        <div class="hero-floating-stat fs-1"><div class="fs-value">500<span style="color:#c8a45c;">+</span></div><div style="font-size:0.62rem;color:var(--gray-400);">Deals Closed</div></div>
+                        <div class="hero-floating-stat fs-2"><div class="fs-value">10<span style="color:#c8a45c;">+</span></div><div style="font-size:0.62rem;color:var(--gray-400);">Years Exp.</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="categories">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Explore</span><h2 class="heading-lg">Property Categories</h2></div>
+            <div class="categories-grid">
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80');" onclick="filterByCategory('buy')"><span class="category-card-label">Apartment</span><span class="category-card-count">120+</span></div>
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80');" onclick="filterByCategory('buy')"><span class="category-card-label">Villa</span><span class="category-card-count">45+</span></div>
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80');" onclick="filterByCategory('invest')"><span class="category-card-label">Plot</span><span class="category-card-count">80+</span></div>
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1497366753798-95821d62e12c?w=600&q=80');" onclick="filterByCategory('invest')"><span class="category-card-label">Commercial</span><span class="category-card-count">35+</span></div>
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=600&q=80');" onclick="filterByCategory('rent')"><span class="category-card-label">Rental</span><span class="category-card-count">200+</span></div>
+                <div class="category-card" style="background-image:url('https://images.unsplash.com/photo-1582582621959-48d27397dc69?w=600&q=80');" onclick="filterByCategory('invest')"><span class="category-card-label">Investment</span><span class="category-card-count">60+</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="properties" style="background:var(--gray-25);">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Featured</span><h2 class="heading-lg">Premium Properties</h2></div>
+            <div class="property-grid" id="propertyGrid">
+                <div class="property-card" data-category="buy">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80');"><span class="property-card-badge gold">Featured</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹2.8 Cr</div><div class="property-card-loc">Arera Colony — 4 BHK Luxury Villa</div><div class="property-card-meta"><span>🛏 4 Beds</span><span>🛁 4 Baths</span><span>📐 3,200 sqft</span></div></div>
+                </div>
+                <div class="property-card" data-category="rent">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80');"><span class="property-card-badge">For Rent</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹45K/mo</div><div class="property-card-loc">MP Nagar — 3 BHK Apartment</div><div class="property-card-meta"><span>🛏 3 Beds</span><span>🛁 3 Baths</span><span>📐 1,800 sqft</span></div></div>
+                </div>
+                <div class="property-card" data-category="sell">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800&q=80');"><span class="property-card-badge">For Sale</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹92 L</div><div class="property-card-loc">Kolar Road — 2 BHK Flat</div><div class="property-card-meta"><span>🛏 2 Beds</span><span>🛁 2 Baths</span><span>📐 1,100 sqft</span></div></div>
+                </div>
+                <div class="property-card" data-category="invest">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1497366753798-95821d62e12c?w=800&q=80');"><span class="property-card-badge gold">Investment</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹1.8 Cr</div><div class="property-card-loc">Hoshangabad Road — Penthouse</div><div class="property-card-meta"><span>🛏 3 Beds</span><span>🛁 3 Baths</span><span>📐 2,400 sqft</span></div></div>
+                </div>
+                <div class="property-card" data-category="buy">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1582582621959-48d27397dc69?w=800&q=80');"><span class="property-card-badge">New</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹65 L</div><div class="property-card-loc">Indrapuri — 2 BHK Apartment</div><div class="property-card-meta"><span>🛏 2 Beds</span><span>🛁 2 Baths</span><span>📐 950 sqft</span></div></div>
+                </div>
+                <div class="property-card" data-category="rent">
+                    <div class="property-card-img" style="background-image:url('https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=800&q=80');"><span class="property-card-badge">For Rent</span></div>
+                    <div class="property-card-body"><div class="property-card-price">₹28K/mo</div><div class="property-card-loc">Arera Colony — 1 BHK Flat</div><div class="property-card-meta"><span>🛏 1 Bed</span><span>🛁 1 Bath</span><span>📐 650 sqft</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Trending</span><h2 class="heading-lg">Popular Locations in Bhopal</h2></div>
+            <div class="locations-grid">
+                <div class="location-card" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80');"><div><span class="location-card-label">Arera Colony</span><span class="location-card-count">45+ Properties</span></div></div>
+                <div class="location-card" style="background-image:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80');"><div><span class="location-card-label">Kolar Road</span><span class="location-card-count">38+ Properties</span></div></div>
+                <div class="location-card" style="background-image:url('https://images.unsplash.com/photo-1558036117-15d82a90b9b1?w=600&q=80');"><div><span class="location-card-label">MP Nagar</span><span class="location-card-count">52+ Properties</span></div></div>
+                <div class="location-card" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80');"><div><span class="location-card-label">Hoshangabad Rd</span><span class="location-card-count">30+ Properties</span></div></div>
+                <div class="location-card" style="background-image:url('https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=600&q=80');"><div><span class="location-card-label">Indrapuri</span><span class="location-card-count">25+ Properties</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--gray-25);">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Services</span><h2 class="heading-lg">What We Offer</h2></div>
+            <div class="services-grid">
+                <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div><h4>Property Management</h4></div>
+                <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/></svg></div><h4>Buying Support</h4></div>
+                <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/></svg></div><h4>Selling Support</h4></div>
+                <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg></div><h4>Rental Support</h4></div>
+                <div class="service-card"><div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h4>Investment Guidance</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Why SEEKAR</span><h2 class="heading-lg">Why Choose Us</h2></div>
+            <div class="why-grid">
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div><div><h4 style="color:var(--navy-900);">Verified Listings</h4><p style="font-size:0.74rem;">Every property is personally verified.</p></div></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg></div><div><h4 style="color:var(--navy-900);">Local Expertise</h4><p style="font-size:0.74rem;">Deep knowledge of Bhopal markets.</p></div></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/></svg></div><div><h4 style="color:var(--navy-900);">Trusted Support</h4><p style="font-size:0.74rem;">Dedicated relationship managers.</p></div></div>
+                <div class="why-card"><div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div><div><h4 style="color:var(--navy-900);">Transparent Process</h4><p style="font-size:0.74rem;">No hidden charges, complete clarity.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="image-banner">
+        <div class="image-banner-content">
+            <h2>Experience the SEEKAR Difference</h2>
+            <p style="color:rgba(255,255,255,0.8);">Bhopal's most trusted property partner</p>
+        </div>
+    </div>
+
+    <section class="section" style="background:var(--gray-25);">
+        <div class="container">
+            <div class="section-header"><span class="section-label">Our Impact</span><h2 class="heading-lg">Market Presence</h2></div>
+            <div class="stats-bar">
+                <div><div class="stat-value">84<span class="plus">+</span></div><div class="stat-label">Properties Managed</div></div>
+                <div><div class="stat-value">1700<span class="plus">+</span></div><div class="stat-label">Community Members</div></div>
+                <div><div class="stat-value">500<span class="plus">+</span></div><div class="stat-label">Successful Deals</div></div>
+                <div><div class="stat-value">10<span class="plus">+</span></div><div class="stat-label">Years Experience</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2 class="heading-lg">Ready to Find Your Ideal Property?</h2>
+            <p class="cta-sub">Connect with Bhopal's most trusted real estate partner today.</p>
+            <div class="cta-btns">
+                <a href="tel:+919981544577" class="btn btn-gold btn-lg">📞 Call Now</a>
+                <a href="tel:+917000347876" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,0.7);color:white;">Schedule Visit</a>
+            </div>
+            <p style="color:rgba(255,255,255,0.45);margin-top:16px;">📱 9981544577 &nbsp;|&nbsp; 📱 7000347876</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>SEEKAR Properties</h5>
+                    <p style="font-size:0.82rem;color:var(--gray-500);">Bhopal's premium real estate platform. Buy, rent, sell, or invest with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Property</h5>
+                    <ul><li><a href="#">Buy</a></li><li><a href="#">Rent</a></li><li><a href="#">Sell</a></li><li><a href="#">Invest</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <ul><li><a href="#">Property Management</a></li><li><a href="#">Consultation</a></li><li><a href="#">Investment Guidance</a></li></ul>
+                </div>
+                <div class="footer-col">
+                    <h5>Contact</h5>
+                    <ul style="font-size:0.82rem;"><li>📞 9981544577</li><li>📞 7000347876</li><li>📍 Bhopal, Madhya Pradesh</li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026 SEEKAR Properties. Founder: Ishwar Singh Chauhan | CEO: Sagar Singh Chauhan
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const bottomItems = document.querySelectorAll('.bottom-nav-item');
+        window.addEventListener('scroll', () => {
+            let current = 'home';
+            ['hero','properties','categories'].forEach(id => {
+                const el = document.getElementById(id);
+                if(el && el.getBoundingClientRect().top < window.innerHeight*0.5) current = id;
+            });
+            bottomItems.forEach(item => {
+                const nav = item.getAttribute('href')?.replace('#','');
+                item.classList.toggle('active', nav === current || (nav==='buy' && current==='categories') || (nav==='rent' && current==='categories'));
+            });
+        });
+
+        const navPills = document.querySelectorAll('#navPills .nav-pill');
+        const propertyCards = document.querySelectorAll('#propertyGrid .property-card');
+        function filterProperties(filter) {
+            navPills.forEach(p => p.classList.remove('active-pill'));
+            document.querySelector(`#navPills .nav-pill[data-filter="${filter}"]`)?.classList.add('active-pill');
+            propertyCards.forEach(card => {
+                if(filter==='all'||filter==='management') card.style.display='block';
+                else card.style.display = card.dataset.category===filter ? 'block':'none';
+            });
+            document.getElementById('properties').scrollIntoView({behavior:'smooth'});
+        }
+        navPills.forEach(pill => pill.addEventListener('click', ()=> filterProperties(pill.dataset.filter)));
+        window.filterByCategory = filterProperties;
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) { e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+            });
+        });
+    </script>
+</body>
+</html>
