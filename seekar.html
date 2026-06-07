@@ -21,6 +21,7 @@
             line-height: 1.3;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            width: 100%;
         }
 
         :root {
@@ -52,7 +53,7 @@
             margin-bottom: 1rem;
         }
 
-        /* ----- DESKTOP NAVIGATION (fixed, hide on scroll) ----- */
+        /* ----- DESKTOP NAVIGATION ----- */
         .navbar {
             position: fixed;
             top: 0;
@@ -132,13 +133,13 @@
             fill: none;
         }
 
-        /* Premium Sidebar - fixed overflow */
+        /* Premium Sidebar - fixed width & no overflow */
         .sidebar-drawer {
             position: fixed;
             top: 0;
             right: -100%;
             width: 85%;
-            max-width: 360px;
+            max-width: 320px;
             height: 100%;
             background: #FFFFFF;
             z-index: 2000;
@@ -147,6 +148,7 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            overflow-x: hidden;
         }
         .sidebar-drawer.open {
             right: 0;
@@ -183,7 +185,7 @@
         }
         .sidebar-nav a {
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
             color: #1F2F40;
             padding: 12px 0;
@@ -289,6 +291,8 @@
             padding: 0.9rem 1.8rem;
             border-radius: 40px;
             text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         .btn-outline {
             background: transparent;
@@ -297,6 +301,8 @@
             padding: 0.9rem 1.8rem;
             border-radius: 40px;
             text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         /* ----- SECTIONS (Desktop: 4 in a row for locations & services, 3 for featured) ----- */
@@ -404,6 +410,7 @@
             border-radius: 48px;
             font-weight: 600;
             text-decoration: none;
+            display: inline-block;
         }
         .leadership-section {
             padding: 80px 40px;
@@ -420,18 +427,29 @@
             background: white;
             border-radius: 32px;
             overflow: hidden;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
         }
         .leader-image {
-            height: 420px;
-            background-size: cover;
-            background-position: center 20%;
+            background-color: #F5F2EC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            height: 280px;
+        }
+        .leader-image img {
+            max-width: 70%;
+            height: auto;
+            opacity: 0.9;
         }
         .leader-info {
             padding: 2rem;
         }
         .leader-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
         .stats-section {
             padding: 70px 40px;
@@ -542,16 +560,17 @@
             }
             .leadership-section { padding: 60px 24px; }
             .leadership-grid { grid-template-columns: 1fr; gap: 32px; }
-            .leader-image { height: 320px; }
+            .leader-image { height: 220px; padding: 2rem; }
             .stats-section { padding: 50px 24px; }
             .stats-grid { gap: 30px; }
             .cta-premium { margin: 40px 24px; padding: 50px 20px; }
             .cta-premium h2 { font-size: 2rem; }
             .premium-footer { padding: 50px 24px 30px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+            .footer-brand { text-align: center; }
+            .copyright { margin-top: 30px; padding-top: 30px; }
         }
         @media (max-width: 550px) {
-            /* on very small devices, keep 2‑column but slightly smaller */
             .featured-grid, .locations-grid, .services-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
@@ -562,14 +581,11 @@
             .hero-inner h1 { font-size: 1.9rem; }
             .card-overlay h3 { font-size: 1rem; }
             .card-overlay p { font-size: 0.7rem; }
+            .leader-name { font-size: 1.4rem; }
         }
-        /* ensure no clipping on sidebar */
+        /* Ensure sidebar never overflows */
         .sidebar-drawer {
             max-width: 320px;
-        }
-        .sidebar-nav a {
-            font-size: 1rem;
-            padding: 10px 0;
         }
         .gold-line-mobile {
             width: 60px;
@@ -583,7 +599,6 @@
 
 <nav class="navbar" id="navbar">
     <div class="logo-wrapper">
-        <!-- Using seekar-logo.png as requested – if file exists it will show, else elegant text fallback -->
         <img src="seekar-logo.png" alt="SEEKAR Properties" class="logo-img" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-family:Cormorant Garamond; font-size:1.8rem; color:white; font-weight:600;\'>SEEKAR</span>'">
     </div>
     <div class="nav-links">
@@ -634,7 +649,7 @@
     </div>
 </div>
 
-<!-- FEATURED (3 on desktop, 2 on mobile) -->
+<!-- FEATURED COLLECTION -->
 <div class="featured-section"><div class="container"><span class="eyebrow">THE EDIT</span><h2 class="section-title">Featured collection</h2>
 <div class="featured-grid">
     <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1974&auto=format');"><div class="card-overlay"><h3>The Lakeview Manor</h3><p>Shahpura Lake · 7,200 sq.ft.</p><div class="price-tag">PRICE UPON REQUEST</div></div></div>
@@ -663,20 +678,40 @@
     <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2070&auto=format');"><div class="service-info"><h3>Renting</h3><p>Curated leases</p></div></div>
 </div></div></div>
 
-<!-- LEADERSHIP -->
+<!-- LEADERSHIP with logo images instead of stock photos -->
 <div class="leadership-section"><div class="container" style="text-align:center"><span class="eyebrow">THE VISIONARIES</span><h2 class="section-title">Leadership & Legacy</h2><p style="color:#5B6E8C;">The driving force behind SEEKAR's uncompromising standard.</p></div>
 <div class="leadership-grid">
-    <div class="leader-card"><div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format');"></div><div class="leader-info"><div class="leader-name">Ishwar Singh Chauhan</div><div class="leader-title">Founder & Managing Director</div><div class="leader-bio">Over two decades shaping Bhopal's luxury landscape. Every SEEKAR property tells a story of enduring value.</div><div style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“We don't just sell estates — we curate legacies.”</div></div></div>
-    <div class="leader-card"><div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format');"></div><div class="leader-info"><div class="leader-name">Sagar Singh Chauhan</div><div class="leader-title">Chief Executive Officer</div><div class="leader-bio">Global mindset, redefining premium real estate. Discretion and white-glove care at the forefront.</div><div style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“Excellence is not an act, but a habit.”</div></div></div>
+    <div class="leader-card">
+        <div class="leader-image">
+            <img src="seekar-logo.png" alt="SEEKAR Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 80%27%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27 font-family=%27Cormorant Garamond%27 font-size=%2730%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="leader-info">
+            <div class="leader-name">Ishwar Singh Chauhan</div>
+            <div class="leader-title">Founder & Managing Director</div>
+            <div class="leader-bio">Over two decades shaping Bhopal's luxury landscape. Every SEEKAR property tells a story of enduring value.</div>
+            <div style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“We don't just sell estates — we curate legacies.”</div>
+        </div>
+    </div>
+    <div class="leader-card">
+        <div class="leader-image">
+            <img src="seekar-logo.png" alt="SEEKAR Logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 80%27%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27 font-family=%27Cormorant Garamond%27 font-size=%2730%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'">
+        </div>
+        <div class="leader-info">
+            <div class="leader-name">Sagar Singh Chauhan</div>
+            <div class="leader-title">Chief Executive Officer</div>
+            <div class="leader-bio">Global mindset, redefining premium real estate. Discretion and white-glove care at the forefront.</div>
+            <div style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“Excellence is not an act, but a habit.”</div>
+        </div>
+    </div>
 </div></div>
 
 <!-- STATS / extra content -->
 <div class="stats-section"><div class="container"><span class="eyebrow">OUR FOOTPRINT</span><h2 class="section-title">By the numbers</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number">₹1200+ Cr</div><div class="stat-label">Transaction Value</div></div><div class="stat-item"><div class="stat-number">250+</div><div class="stat-label">Luxury Estates</div></div><div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Client Satisfaction</div></div><div class="stat-item"><div class="stat-number">15+ Years</div><div class="stat-label">Excellence</div></div></div></div></div>
 
-<!-- CTA -->
+<!-- CTA SECTION (Fixed spacing) -->
 <div class="cta-premium"><h2>Your estate story begins here</h2><p>Discretion, insight and the finest properties across Bhopal & beyond.</p><a href="#" class="btn-gold">Arrange a private viewing →</a></div>
 
-<!-- FOOTER -->
+<!-- FOOTER (Fixed alignment on mobile) -->
 <footer class="premium-footer"><div class="footer-grid"><div class="footer-brand"><img src="seekar-logo.png" alt="SEEKAR" class="footer-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 40%27%3E%3Ctext x=%270%27 y=%2728%27 font-family=%27Cormorant Garamond%27 font-size=%2726%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'"><p>Curating Bhopal's finest estates with white-glove service.</p></div><div class="footer-col"><h4>Explore</h4><a href="#">Buy</a><a href="#">Rent</a><a href="#">Sell</a><a href="#">Invest</a></div><div class="footer-col"><h4>Services</h4><a href="#">Property Management</a><a href="#">Concierge</a><a href="#">Valuation</a></div><div class="footer-col"><h4>Connect</h4><p>+91 755 444 7890</p><p>+91 882 333 5678</p><p>enquiries@seekarproperties.com</p><p>Arera Colony, Bhopal</p></div></div><div class="copyright">© 2025 SEEKAR Properties — Luxury Real Estate, Bhopal.</div></footer>
 
 <script>
@@ -699,7 +734,7 @@
         lastScroll = currentScroll;
     });
 
-    // Sidebar
+    // Sidebar logic
     const menuBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('closeSidebarBtn');
     const sidebar = document.getElementById('sidebarDrawer');
