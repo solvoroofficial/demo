@@ -53,7 +53,7 @@
             margin-bottom: 1rem;
         }
 
-        /* ----- DESKTOP NAVIGATION ----- */
+        /* ----- DESKTOP NAVIGATION (fixed, hide on scroll) ----- */
         .navbar {
             position: fixed;
             top: 0;
@@ -133,13 +133,13 @@
             fill: none;
         }
 
-        /* Premium Sidebar - fixed width & no overflow */
+        /* Premium Sidebar - perfectly fitted, no spacing issues */
         .sidebar-drawer {
             position: fixed;
             top: 0;
             right: -100%;
             width: 85%;
-            max-width: 320px;
+            max-width: 340px;
             height: 100%;
             background: #FFFFFF;
             z-index: 2000;
@@ -161,7 +161,7 @@
             border-bottom: 1px solid #EFE9DF;
         }
         .sidebar-logo-img {
-            height: 36px;
+            height: 38px;
             width: auto;
         }
         .close-sidebar {
@@ -170,48 +170,75 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .close-sidebar svg {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             stroke: #4A5B6E;
+            stroke-width: 1.8;
         }
         .sidebar-nav {
             flex: 1;
-            padding: 28px 24px;
+            padding: 32px 24px;
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.25rem;
         }
         .sidebar-nav a {
             text-decoration: none;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #1F2F40;
-            padding: 12px 0;
+            padding: 14px 0;
             transition: 0.2s;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid #F0EBE1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .sidebar-nav a::after {
+            content: "→";
+            opacity: 0;
+            transition: 0.2s;
+            color: var(--gold-subtle);
         }
         .sidebar-nav a:hover {
             color: var(--gold-subtle);
-            transform: translateX(5px);
+            transform: translateX(4px);
+        }
+        .sidebar-nav a:hover::after {
+            opacity: 1;
         }
         .sidebar-bottom {
-            padding: 20px 24px;
+            padding: 24px;
             border-top: 1px solid #EFE9DF;
             background: #FEFCF8;
+        }
+        .sidebar-contact p {
+            font-size: 0.85rem;
+            color: #5B6E8C;
+            margin-bottom: 8px;
         }
         .inquiry-btn {
             background: var(--navy-deep);
             color: white;
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border-radius: 48px;
             font-weight: 500;
             text-align: center;
             display: inline-block;
             text-decoration: none;
             font-size: 0.9rem;
+            margin-top: 16px;
+            transition: 0.2s;
+        }
+        .inquiry-btn:hover {
+            background: #12324d;
+            transform: translateY(-2px);
         }
         .overlay-blur {
             position: fixed;
@@ -479,9 +506,12 @@
             font-size: 3rem;
             color: white;
         }
+
+        /* ----- PREMIUM FOOTER (elevated) ----- */
         .premium-footer {
             background: #F8F9FC;
             padding: 60px 40px 30px;
+            border-top: 1px solid #EDF0F4;
         }
         .footer-grid {
             max-width: 1440px;
@@ -491,18 +521,70 @@
             gap: 40px;
         }
         .footer-brand .footer-logo-img {
-            height: 40px;
-            margin-bottom: 16px;
+            height: 44px;
+            margin-bottom: 20px;
+        }
+        .footer-brand p {
+            color: #475569;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--navy-deep);
+            letter-spacing: 0.5px;
+            position: relative;
+            display: inline-block;
+        }
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 32px;
+            height: 2px;
+            background: var(--gold-subtle);
+        }
+        .footer-col a {
+            display: block;
+            text-decoration: none;
+            color: #5B6E8C;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--gold-subtle);
+            transform: translateX(4px);
+        }
+        .footer-contact p {
+            font-size: 0.85rem;
+            color: #5B6E8C;
+            margin-bottom: 10px;
+            line-height: 1.5;
         }
         .copyright {
             text-align: center;
-            padding-top: 40px;
+            padding-top: 48px;
             margin-top: 40px;
             border-top: 1px solid #E2E8F0;
             font-size: 0.75rem;
+            color: #7C8BA0;
+            letter-spacing: 0.3px;
+        }
+        .gold-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--gold-subtle);
+            border-radius: 50%;
+            margin-right: 8px;
         }
 
-        /* ========== MOBILE & TABLET (2‑column images, no overflow) ========== */
+        /* ========== MOBILE & TABLET (single column images, perfect spacing) ========== */
         @media (max-width: 1024px) {
             .container { padding: 0 24px; }
             .navbar { padding: 18px 24px; }
@@ -539,21 +621,21 @@
             .cta-group { flex-direction: column; gap: 0.9rem; }
             .btn-primary, .btn-outline { width: 100%; text-align: center; }
             
-            /* Mobile: 2 images per row (fix thin images) */
+            /* Mobile: ONE IMAGE PER ROW (requested fix) */
             .featured-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             .locations-grid, .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            .feature-card { height: 320px; }
-            .location-card { height: 260px; }
-            .service-tile { height: 280px; }
-            .card-overlay h3 { font-size: 1.2rem; }
-            .service-info h3 { font-size: 1.2rem; }
-            .location-label { font-size: 0.7rem; padding: 6px 14px; bottom: 12px; left: 12px; }
+            .feature-card { height: 460px; }
+            .location-card { height: 340px; }
+            .service-tile { height: 380px; }
+            .card-overlay h3 { font-size: 1.5rem; }
+            .service-info h3 { font-size: 1.5rem; }
+            .location-label { font-size: 0.85rem; padding: 10px 20px; bottom: 20px; left: 20px; }
             
             .featured-section, .locations-section, .services-section {
                 padding: 60px 24px;
@@ -565,33 +647,41 @@
             .stats-grid { gap: 30px; }
             .cta-premium { margin: 40px 24px; padding: 50px 20px; }
             .cta-premium h2 { font-size: 2rem; }
+            
+            /* Footer mobile premium */
             .premium-footer { padding: 50px 24px 30px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-brand { text-align: center; }
+            .footer-brand p { max-width: 100%; margin: 0 auto; }
+            .footer-col h4:after { left: 50%; transform: translateX(-50%); width: 40px; }
+            .footer-col a { text-align: center; }
+            .footer-contact p { text-align: center; }
             .copyright { margin-top: 30px; padding-top: 30px; }
         }
         @media (max-width: 550px) {
-            .featured-grid, .locations-grid, .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-            .feature-card { height: 260px; }
-            .location-card { height: 200px; }
-            .service-tile { height: 220px; }
+            .feature-card { height: 400px; }
+            .location-card { height: 280px; }
+            .service-tile { height: 320px; }
             .hero-inner h1 { font-size: 1.9rem; }
-            .card-overlay h3 { font-size: 1rem; }
-            .card-overlay p { font-size: 0.7rem; }
-            .leader-name { font-size: 1.4rem; }
-        }
-        /* Ensure sidebar never overflows */
-        .sidebar-drawer {
-            max-width: 320px;
+            .hero-inner { padding: 1.5rem; }
+            .leader-name { font-size: 1.5rem; }
+            .leader-image img { max-width: 60%; }
         }
         .gold-line-mobile {
             width: 60px;
             height: 2px;
             background: var(--gold-subtle);
             margin-top: 1.2rem;
+        }
+        /* Sidebar scroll fix */
+        .sidebar-drawer::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sidebar-drawer::-webkit-scrollbar-track {
+            background: #EFE9DF;
+        }
+        .sidebar-drawer::-webkit-scrollbar-thumb {
+            background: var(--gold-subtle);
         }
     </style>
 </head>
@@ -617,24 +707,35 @@
     </div>
 </nav>
 
-<!-- Sidebar (fixed overflow, premium) -->
+<!-- Premium Sidebar (fixed spacing) -->
 <div class="sidebar-drawer" id="sidebarDrawer">
     <div class="sidebar-header">
         <img src="seekar-logo.png" alt="SEEKAR" class="sidebar-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 40%27%3E%3Ctext x=%270%27 y=%2728%27 font-family=%27Cormorant Garamond%27 font-size=%2726%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'">
         <button class="close-sidebar" id="closeSidebarBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="sidebar-nav">
-        <a href="#">Home</a><a href="#">Buy</a><a href="#">Rent</a><a href="#">Sell</a><a href="#">Invest</a>
-        <a href="#">Services</a><a href="#">Property Management</a><a href="#">About</a><a href="#">Contact</a>
+        <a href="#">Home</a>
+        <a href="#">Buy</a>
+        <a href="#">Rent</a>
+        <a href="#">Sell</a>
+        <a href="#">Invest</a>
+        <a href="#">Services</a>
+        <a href="#">Property Management</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
     </div>
     <div class="sidebar-bottom">
-        <div class="sidebar-contact"><p style="margin-bottom:6px;">+91 755 444 7890</p><p style="margin-bottom:6px;">+91 882 333 5678</p><p>enquiries@seekarproperties.com</p></div>
+        <div class="sidebar-contact">
+            <p><span class="gold-dot"></span> +91 755 444 7890</p>
+            <p><span class="gold-dot"></span> +91 882 333 5678</p>
+            <p><span class="gold-dot"></span> enquiries@seekarproperties.com</p>
+        </div>
         <a href="#" class="inquiry-btn">Request a private consultation</a>
     </div>
 </div>
 <div class="overlay-blur" id="overlayBlur"></div>
 
-<!-- HERO (Desktop & mobile) -->
+<!-- HERO -->
 <div class="hero-desktop">
     <div class="hero-image-area"></div>
     <div class="hero-content-area">
@@ -649,7 +750,7 @@
     </div>
 </div>
 
-<!-- FEATURED COLLECTION -->
+<!-- FEATURED COLLECTION (single column on mobile) -->
 <div class="featured-section"><div class="container"><span class="eyebrow">THE EDIT</span><h2 class="section-title">Featured collection</h2>
 <div class="featured-grid">
     <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1974&auto=format');"><div class="card-overlay"><h3>The Lakeview Manor</h3><p>Shahpura Lake · 7,200 sq.ft.</p><div class="price-tag">PRICE UPON REQUEST</div></div></div>
@@ -660,7 +761,7 @@
 <!-- LIFESTYLE -->
 <div class="lifestyle"><div class="lifestyle-overlay"><h2>Beyond architecture.<br>An art of belonging.</h2><a href="#" class="btn-gold">Discover the Seeker lifestyle →</a></div></div>
 
-<!-- LOCATIONS (4 on desktop, 2 on mobile) -->
+<!-- LOCATIONS (single column on mobile) -->
 <div class="locations-section"><div class="container"><span class="eyebrow">ENVIRONS</span><h2 class="section-title">Prime addresses, Bhopal</h2>
 <div class="locations-grid">
     <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format');"><div class="location-label">Arera Hills</div></div>
@@ -669,7 +770,7 @@
     <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2070&auto=format');"><div class="location-label">Premium Corridor</div></div>
 </div></div></div>
 
-<!-- SERVICES (4 on desktop, 2 on mobile) -->
+<!-- SERVICES (single column on mobile) -->
 <div class="services-section"><div class="container"><span class="eyebrow">EXPERTISE</span><h2 class="section-title">Concierge of real estate</h2>
 <div class="services-grid">
     <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format');"><div class="service-info"><h3>Property Management</h3><p>White-glove asset care</p></div></div>
@@ -678,7 +779,7 @@
     <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2070&auto=format');"><div class="service-info"><h3>Renting</h3><p>Curated leases</p></div></div>
 </div></div></div>
 
-<!-- LEADERSHIP with logo images instead of stock photos -->
+<!-- LEADERSHIP with logo images -->
 <div class="leadership-section"><div class="container" style="text-align:center"><span class="eyebrow">THE VISIONARIES</span><h2 class="section-title">Leadership & Legacy</h2><p style="color:#5B6E8C;">The driving force behind SEEKAR's uncompromising standard.</p></div>
 <div class="leadership-grid">
     <div class="leader-card">
@@ -705,14 +806,45 @@
     </div>
 </div></div>
 
-<!-- STATS / extra content -->
+<!-- STATS SECTION -->
 <div class="stats-section"><div class="container"><span class="eyebrow">OUR FOOTPRINT</span><h2 class="section-title">By the numbers</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number">₹1200+ Cr</div><div class="stat-label">Transaction Value</div></div><div class="stat-item"><div class="stat-number">250+</div><div class="stat-label">Luxury Estates</div></div><div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Client Satisfaction</div></div><div class="stat-item"><div class="stat-number">15+ Years</div><div class="stat-label">Excellence</div></div></div></div></div>
 
-<!-- CTA SECTION (Fixed spacing) -->
+<!-- CTA SECTION -->
 <div class="cta-premium"><h2>Your estate story begins here</h2><p>Discretion, insight and the finest properties across Bhopal & beyond.</p><a href="#" class="btn-gold">Arrange a private viewing →</a></div>
 
-<!-- FOOTER (Fixed alignment on mobile) -->
-<footer class="premium-footer"><div class="footer-grid"><div class="footer-brand"><img src="seekar-logo.png" alt="SEEKAR" class="footer-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 40%27%3E%3Ctext x=%270%27 y=%2728%27 font-family=%27Cormorant Garamond%27 font-size=%2726%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'"><p>Curating Bhopal's finest estates with white-glove service.</p></div><div class="footer-col"><h4>Explore</h4><a href="#">Buy</a><a href="#">Rent</a><a href="#">Sell</a><a href="#">Invest</a></div><div class="footer-col"><h4>Services</h4><a href="#">Property Management</a><a href="#">Concierge</a><a href="#">Valuation</a></div><div class="footer-col"><h4>Connect</h4><p>+91 755 444 7890</p><p>+91 882 333 5678</p><p>enquiries@seekarproperties.com</p><p>Arera Colony, Bhopal</p></div></div><div class="copyright">© 2025 SEEKAR Properties — Luxury Real Estate, Bhopal.</div></footer>
+<!-- PREMIUM FOOTER (elevated, mobile-friendly) -->
+<footer class="premium-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <img src="seekar-logo.png" alt="SEEKAR" class="footer-logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 40%27%3E%3Ctext x=%270%27 y=%2728%27 font-family=%27Cormorant Garamond%27 font-size=%2726%27 fill=%27%230A1C2F%27%3ESEEKAR%3C/text%3E%3C/svg%3E'">
+            <p>Curating Bhopal's finest estates with white-glove service and absolute discretion.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <a href="#">Buy</a>
+            <a href="#">Rent</a>
+            <a href="#">Sell</a>
+            <a href="#">Invest</a>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#">Property Management</a>
+            <a href="#">Concierge</a>
+            <a href="#">Valuation</a>
+            <a href="#">Legal Advisory</a>
+        </div>
+        <div class="footer-col">
+            <h4>Connect</h4>
+            <p>+91 755 444 7890</p>
+            <p>+91 882 333 5678</p>
+            <p>enquiries@seekarproperties.com</p>
+            <p>1st Floor, E-7 Arcade, Arera Colony, Bhopal - 462016</p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2025 SEEKAR Properties — Luxury Real Estate, Bhopal. All rights reserved.
+    </div>
+</footer>
 
 <script>
     // Hide/show navbar on scroll
@@ -734,7 +866,7 @@
         lastScroll = currentScroll;
     });
 
-    // Sidebar logic
+    // Sidebar logic with proper closing
     const menuBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('closeSidebarBtn');
     const sidebar = document.getElementById('sidebarDrawer');
