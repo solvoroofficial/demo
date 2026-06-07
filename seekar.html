@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* luxury navy + gold accents */
         :root {
             --navy-deep: #0A1C2F;
             --gold-subtle: #C6A15B;
@@ -54,39 +53,41 @@
             margin-bottom: 1rem;
         }
 
-        /* ----- DESKTOP NAVIGATION (unchanged) ----- */
+        /* ===== DESKTOP NAVIGATION ===== */
         .navbar {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            padding: 28px 40px;
+            z-index: 1000;
+            padding: 24px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: transparent;
+            transition: transform 0.3s ease, background 0.3s ease, backdrop-filter 0.3s;
             pointer-events: none;
         }
-
-        .navbar a, .navbar .logo, .mobile-icons, .mobile-menu-btn {
+        .navbar.scrolled {
+            background: rgba(10, 28, 47, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .navbar.hide {
+            transform: translateY(-100%);
+        }
+        .navbar a, .navbar .logo-wrapper, .mobile-icons {
             pointer-events: auto;
         }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            color: white;
-            text-decoration: none;
-            background: rgba(10, 28, 47, 0.4);
-            backdrop-filter: blur(8px);
-            padding: 6px 18px;
-            border-radius: 60px;
-            border: 0.5px solid rgba(255,255,255,0.2);
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
         }
-
+        .logo-img {
+            height: 42px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
         .nav-links {
             display: flex;
             gap: 2.8rem;
@@ -108,7 +109,7 @@
             color: var(--gold-subtle);
         }
 
-        /* Mobile icons container - PREMIUM GLASS STYLE */
+        /* Mobile icons */
         .mobile-icons {
             display: none;
             align-items: center;
@@ -126,7 +127,6 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.25s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         .icon-btn svg {
             width: 20px;
@@ -135,13 +135,8 @@
             stroke-width: 1.8;
             fill: none;
         }
-        .icon-btn:hover {
-            background: rgba(198, 161, 91, 0.7);
-            border-color: var(--gold-subtle);
-            transform: scale(1.02);
-        }
 
-        /* Premium Sidebar Drawer - elegant, gold accents */
+        /* Sidebar */
         .sidebar-drawer {
             position: fixed;
             top: 0;
@@ -150,12 +145,11 @@
             max-width: 400px;
             height: 100%;
             background: #FFFFFF;
-            z-index: 200;
+            z-index: 2000;
             box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
             transition: right 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.05);
             display: flex;
             flex-direction: column;
-            font-family: 'Inter', sans-serif;
         }
         .sidebar-drawer.open {
             right: 0;
@@ -166,21 +160,12 @@
             align-items: center;
             padding: 32px 28px;
             border-bottom: 1px solid #EFE9DF;
-            background: #FEFCF8;
         }
-        .sidebar-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--navy-deep);
-            letter-spacing: -0.3px;
-            background: linear-gradient(135deg, #0A1C2F 0%, #2C3E50 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        .sidebar-logo-img {
+            height: 36px;
         }
         .close-sidebar {
-            background: rgba(0,0,0,0.04);
+            background: none;
             border: none;
             cursor: pointer;
             padding: 8px;
@@ -190,10 +175,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s;
-        }
-        .close-sidebar:hover {
-            background: rgba(198,161,91,0.15);
         }
         .close-sidebar svg {
             width: 20px;
@@ -215,56 +196,28 @@
             color: #1F2F40;
             padding: 14px 0;
             transition: all 0.2s;
-            border-bottom: 1px solid transparent;
-            letter-spacing: -0.2px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-        }
-        .sidebar-nav a::after {
-            content: "→";
-            opacity: 0;
-            transition: 0.2s;
-            color: var(--gold-subtle);
         }
         .sidebar-nav a:hover {
             color: var(--gold-subtle);
             transform: translateX(6px);
-        }
-        .sidebar-nav a:hover::after {
-            opacity: 1;
-            transform: translateX(2px);
         }
         .sidebar-bottom {
             padding: 24px 28px;
             border-top: 1px solid #EFE9DF;
             background: #FEFCF8;
         }
-        .sidebar-contact {
-            font-size: 0.85rem;
-            color: #5B6E8C;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
         .inquiry-btn {
             background: var(--navy-deep);
             color: white;
-            border: none;
             width: 100%;
             padding: 14px;
             border-radius: 48px;
             font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
             text-align: center;
             display: inline-block;
             text-decoration: none;
-            letter-spacing: 0.3px;
-        }
-        .inquiry-btn:hover {
-            background: #12324d;
-            transform: translateY(-2px);
         }
         .overlay-blur {
             position: fixed;
@@ -274,7 +227,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
-            z-index: 150;
+            z-index: 1500;
             opacity: 0;
             visibility: hidden;
             transition: 0.25s;
@@ -294,7 +247,6 @@
             background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format');
             background-size: cover;
             background-position: center 30%;
-            position: relative;
         }
         .hero-content-area {
             background: white;
@@ -309,7 +261,6 @@
         }
         .hero-inner h1 {
             font-size: 3.5rem;
-            font-weight: 600;
             line-height: 1.2;
             color: var(--navy-deep);
             margin-bottom: 1rem;
@@ -328,7 +279,6 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: var(--shadow-glass);
             margin-bottom: 2rem;
         }
         .search-box input {
@@ -338,13 +288,6 @@
             background: transparent;
             outline: none;
         }
-        .search-icon-svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--gold-subtle);
-            stroke-width: 1.8;
-            fill: none;
-        }
         .cta-group {
             display: flex;
             gap: 1.2rem;
@@ -352,12 +295,9 @@
         .btn-primary {
             background: var(--navy-deep);
             color: white;
-            border: none;
             padding: 0.9rem 1.8rem;
             border-radius: 40px;
             font-weight: 500;
-            font-size: 0.9rem;
-            cursor: pointer;
             text-decoration: none;
             display: inline-block;
         }
@@ -367,13 +307,11 @@
             color: var(--navy-deep);
             padding: 0.9rem 1.8rem;
             border-radius: 40px;
-            font-weight: 500;
             text-decoration: none;
-            display: inline-block;
         }
 
-        /* ----- FEATURED COLLECTION (desktop) ----- */
-        .featured-section {
+        /* Featured, Locations, Services shared styles (desktop) */
+        .featured-section, .locations-section, .services-section {
             padding: 100px 40px 120px;
         }
         .section-title {
@@ -382,24 +320,23 @@
             color: var(--navy-deep);
             margin-bottom: 0.5rem;
         }
-        .featured-grid {
+        .featured-grid, .locations-grid, .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-top: 48px;
+        }
+        .feature-card, .location-card, .service-tile {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s;
         }
         .feature-card {
             position: relative;
             height: 580px;
             background-size: cover;
             background-position: center;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: scale(1.01);
         }
         .card-overlay {
             position: absolute;
@@ -410,29 +347,46 @@
             background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
             color: white;
         }
-        .card-overlay h3 {
-            font-size: 1.7rem;
-            font-weight: 500;
-            margin-bottom: 6px;
+        .location-card {
+            background-size: cover;
+            background-position: center;
+            height: 420px;
+            position: relative;
         }
-        .price-tag {
-            font-size: 0.8rem;
-            margin-top: 8px;
-            color: var(--gold-light);
+        .location-label {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            border-left: 3px solid var(--gold-subtle);
         }
-
-        /* LIFESTYLE SECTION */
+        .service-tile {
+            height: 480px;
+            background-size: cover;
+            position: relative;
+        }
+        .service-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.8rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+            color: white;
+        }
         .lifestyle {
             position: relative;
             height: 85vh;
             background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2070&auto=format');
             background-size: cover;
-            background-position: center 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin: 40px 0;
         }
         .lifestyle-overlay {
             background: rgba(10, 28, 47, 0.35);
@@ -447,7 +401,6 @@
         .lifestyle h2 {
             font-size: 4rem;
             color: white;
-            font-weight: 500;
             margin-bottom: 1.5rem;
         }
         .btn-gold {
@@ -456,107 +409,91 @@
             padding: 1rem 2.6rem;
             border-radius: 48px;
             font-weight: 600;
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
             text-decoration: none;
-            display: inline-block;
         }
 
-        /* LOCATIONS grid desktop */
-        .locations-section {
+        /* Leadership section */
+        .leadership-section {
             padding: 80px 40px;
+            background: #FCFAF7;
         }
-        .locations-grid {
+        .leadership-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            margin-top: 48px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px;
+            max-width: 1280px;
+            margin: 48px auto 0;
         }
-        .location-card {
-            background-size: cover;
-            background-position: center;
-            height: 420px;
-            border-radius: 28px;
-            position: relative;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            transition: all 0.3s;
-        }
-        .location-label {
-            position: absolute;
-            bottom: 24px;
-            left: 24px;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(8px);
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            color: var(--navy-deep);
-            border-left: 3px solid var(--gold-subtle);
-        }
-
-        /* SERVICES desktop */
-        .services-section {
-            padding: 80px 40px;
-            background-color: #FDFDFD;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
-            margin-top: 55px;
-        }
-        .service-tile {
-            height: 480px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 28px;
-            position: relative;
+        .leader-card {
+            background: white;
+            border-radius: 32px;
             overflow: hidden;
+            box-shadow: 0 20px 35px -10px rgba(0,0,0,0.05);
         }
-        .service-tile .service-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.8rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
-            color: white;
+        .leader-image {
+            height: 420px;
+            background-size: cover;
+            background-position: center 20%;
         }
-        .service-info h3 {
-            font-size: 1.7rem;
-            font-weight: 500;
+        .leader-info {
+            padding: 2rem;
+        }
+        .leader-name {
             font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .leader-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-subtle);
+            margin: 0.5rem 0 1rem;
+        }
+        /* Stats / numbers section */
+        .stats-section {
+            padding: 70px 40px;
+            background: white;
+            text-align: center;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--gold-subtle);
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: #475569;
+            margin-top: 0.5rem;
         }
 
-        /* CTA Section */
+        /* CTA & Footer */
         .cta-premium {
             background: var(--navy-deep);
             margin: 60px 40px 40px;
             border-radius: 40px;
             padding: 80px 20px;
             text-align: center;
-            background-image: radial-gradient(circle at 10% 20%, rgba(198,161,91,0.08) 0%, rgba(10,28,47,1) 90%);
         }
         .cta-premium h2 {
             font-size: 3rem;
             color: white;
         }
-        .cta-premium p {
-            color: rgba(255,255,255,0.7);
-            margin: 1rem 0 2rem;
-        }
-        .cta-premium .btn-gold {
-            background: white;
-            color: var(--navy-deep);
-        }
-
-        /* ========== PREMIUM FOOTER (Desktop & Mobile) ========== */
         .premium-footer {
             background: #F8F9FC;
-            border-top: 1px solid #E9EDF2;
             padding: 60px 40px 30px;
-            margin-top: 40px;
         }
         .footer-grid {
             max-width: 1440px;
@@ -565,24 +502,14 @@
             grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
             gap: 40px;
         }
-        .footer-brand .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: var(--navy-deep);
+        .footer-brand .footer-logo-img {
+            height: 40px;
             margin-bottom: 16px;
-        }
-        .footer-brand p {
-            color: #475569;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            max-width: 260px;
         }
         .footer-col h4 {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 20px;
-            color: #0A1C2F;
         }
         .footer-col a {
             display: block;
@@ -590,15 +517,6 @@
             color: #5B6E8C;
             font-size: 0.85rem;
             margin-bottom: 12px;
-            transition: color 0.2s;
-        }
-        .footer-col a:hover {
-            color: var(--gold-subtle);
-        }
-        .footer-contact p {
-            font-size: 0.85rem;
-            color: #5B6E8C;
-            margin-bottom: 8px;
         }
         .copyright {
             text-align: center;
@@ -606,209 +524,97 @@
             margin-top: 40px;
             border-top: 1px solid #E2E8F0;
             font-size: 0.75rem;
-            color: #7C8BA0;
         }
 
-        /* ========== MOBILE RESPONSIVE (RICH TEXT, PREMIUM LAYOUT) ========== */
+        /* ========== MOBILE & TABLET: 2-COLUMN GRID, FIXED OVERFLOW ========== */
+        @media (max-width: 1024px) {
+            .container { padding: 0 24px; }
+            .navbar { padding: 18px 24px; }
+        }
         @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-            }
-            .mobile-icons {
-                display: flex;
-            }
-            .navbar {
-                padding: 18px 22px;
-                background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-            }
-            /* Hero mobile: full image with glass card - more text */
+            .nav-links { display: none; }
+            .mobile-icons { display: flex; }
+            /* Hero mobile: fixed overflow */
             .hero-desktop {
                 display: block;
-                position: relative;
                 min-height: 100vh;
                 background: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format');
                 background-size: cover;
                 background-position: center 35%;
             }
-            .hero-image-area {
-                display: none;
-            }
+            .hero-image-area { display: none; }
             .hero-content-area {
                 background: transparent;
                 min-height: 100vh;
                 align-items: flex-end;
-                padding: 2rem 1.5rem 3rem;
+                padding: 5rem 1.5rem 3rem;
+                display: flex;
             }
             .hero-inner {
                 background: rgba(255, 255, 255, 0.96);
                 backdrop-filter: blur(16px);
                 border-radius: 32px;
-                padding: 2rem 1.8rem;
-                box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
-                max-width: 100%;
-            }
-            .hero-inner h1 {
-                font-size: 2.4rem;
-                margin-bottom: 0.8rem;
-            }
-            .hero-inner p {
-                font-size: 0.95rem;
-                margin-bottom: 1.6rem;
-                line-height: 1.45;
-            }
-            /* Add extra elegance text line */
-            .hero-inner::after {
-                display: none;
-            }
-            .gold-line-mobile {
-                width: 50px;
-                height: 2px;
-                background: var(--gold-subtle);
-                margin-top: 1.2rem;
-            }
-            .cta-group {
-                flex-direction: column;
-                gap: 0.9rem;
-            }
-            .btn-primary, .btn-outline {
+                padding: 2rem;
                 width: 100%;
-                text-align: center;
+                margin-bottom: 2rem;
             }
-            /* Feature section - enriched text */
-            .featured-section, .locations-section, .services-section {
-                padding: 60px 24px;
-            }
-            .featured-grid, .locations-grid, .services-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .feature-card {
-                height: 480px;
-            }
-            .card-overlay h3 {
-                font-size: 1.6rem;
-            }
-            .card-overlay p {
-                font-size: 0.9rem;
-            }
-            /* Add additional descriptive text for mobile richness */
-            .featured-section .section-title + .featured-grid::before {
-                content: "Each residence meticulously curated for the discerning few.";
-                display: block;
-                font-size: 0.9rem;
-                color: #5B6E8C;
-                margin-bottom: 1.5rem;
-                font-style: italic;
-                letter-spacing: 0.2px;
-            }
-            .locations-section .section-title + .locations-grid::before {
-                content: "Bhopal's most coveted addresses, where prestige meets tranquility.";
-                display: block;
-                font-size: 0.9rem;
-                color: #5B6E8C;
-                margin-bottom: 1.5rem;
-                font-style: normal;
-                font-weight: 400;
-            }
-            .services-section .section-title + .services-grid::before {
-                content: "White-glove expertise across every facet of luxury real estate.";
-                display: block;
-                font-size: 0.9rem;
-                color: #5B6E8C;
-                margin-bottom: 1.5rem;
-            }
-            .location-card {
-                height: 340px;
-            }
-            .service-tile {
-                height: 400px;
-            }
-            .service-info h3 {
-                font-size: 1.5rem;
-            }
-            .service-info p {
-                font-size: 0.8rem;
-            }
-            .lifestyle {
-                height: 70vh;
-                margin: 20px 0;
-            }
-            .lifestyle h2 {
-                font-size: 2.2rem;
-                padding: 0 1rem;
-            }
-            .cta-premium {
-                margin: 40px 24px;
-                padding: 50px 20px;
-            }
-            .cta-premium h2 {
-                font-size: 2rem;
-            }
-            /* Footer mobile */
-            .premium-footer {
-                padding: 50px 24px 30px;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .footer-brand p {
-                max-width: 100%;
-            }
-            .copyright {
-                margin-top: 30px;
-                padding-top: 30px;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            /* Extra spacing and readability */
-            .hero-inner .gold-line-mobile {
-                margin-top: 1rem;
-            }
-        }
+            .hero-inner h1 { font-size: 2.2rem; }
+            .cta-group { flex-direction: column; gap: 0.9rem; }
+            .btn-primary, .btn-outline { width: 100%; text-align: center; }
 
-        @media (max-width: 480px) {
-            .hero-inner {
-                padding: 1.6rem;
+            /* 2-column grid for images (fix "thin images" issue) */
+            .featured-grid, .locations-grid, .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
-            .hero-inner h1 {
-                font-size: 2rem;
-            }
-            .feature-card {
-                height: 440px;
-            }
-            .service-tile {
-                height: 360px;
-            }
-            .location-card {
-                height: 300px;
-            }
-            .lifestyle h2 {
-                font-size: 1.8rem;
-            }
-            .cta-premium h2 {
-                font-size: 1.7rem;
-            }
-            .sidebar-nav a {
-                font-size: 1.1rem;
-                padding: 12px 0;
-            }
+            .feature-card { height: 320px; }
+            .location-card { height: 260px; }
+            .service-tile { height: 280px; }
+            .card-overlay h3 { font-size: 1.2rem; }
+            .service-info h3 { font-size: 1.2rem; }
+            .location-label { font-size: 0.75rem; padding: 8px 16px; bottom: 16px; left: 16px; }
+            
+            .featured-section, .locations-section, .services-section { padding: 60px 24px; }
+            .leadership-section { padding: 60px 24px; }
+            .leadership-grid { grid-template-columns: 1fr; gap: 32px; }
+            .leader-image { height: 320px; }
+            .stats-section { padding: 50px 24px; }
+            .stats-grid { gap: 30px; }
+            .cta-premium { margin: 40px 24px; padding: 50px 20px; }
+            .cta-premium h2 { font-size: 2rem; }
+            .premium-footer { padding: 50px 24px 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
         }
-        /* Helper */
+        @media (max-width: 550px) {
+            .featured-grid, .locations-grid, .services-grid {
+                grid-template-columns: 1fr; /* on very small devices single column for better readability */
+            }
+            .feature-card { height: 400px; }
+            .hero-inner h1 { font-size: 1.9rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-inner { padding: 1.5rem; }
+            .leader-image { height: 260px; }
+        }
         .gold-line-mobile {
             width: 60px;
             height: 2px;
             background: var(--gold-subtle);
             margin-top: 1.2rem;
         }
+        .logo-img, .footer-logo-img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
 
-<!-- Desktop Navbar + Mobile Icons (Premium Glass) -->
-<nav class="navbar">
-    <a href="#" class="logo">SEEKAR</a>
+<nav class="navbar" id="navbar">
+    <div class="logo-wrapper">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Ctext x='0' y='35' font-family='Cormorant Garamond, serif' font-size='32' fill='white' font-weight='600'%3ESEEKAR%3C/text%3E%3C/svg%3E" alt="SEEKAR Properties" class="logo-img" id="mainLogo">
+        <!-- Note: Replace with actual seekar-logo.png when available. Current SVG is elegant placeholder -->
+    </div>
     <div class="nav-links">
         <a href="#">Residences</a>
         <a href="#">Collection</a>
@@ -817,56 +623,32 @@
     </div>
     <div class="mobile-icons">
         <button class="icon-btn" id="mobileSearchBtn" aria-label="Search">
-            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round">
-                <circle cx="10.5" cy="10.5" r="7.5" fill="none"/>
-                <line x1="21" y1="21" x2="15.8" y2="15.8"/>
-            </svg>
+            <svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="10.5" cy="10.5" r="7.5" fill="none"/><line x1="21" y1="21" x2="15.8" y2="15.8"/></svg>
         </button>
         <button class="icon-btn" id="mobileMenuBtn" aria-label="Menu">
-            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none">
-                <line x1="3" y1="12" x2="21" y2="12"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
+            <svg viewBox="0 0 24 24" stroke="currentColor"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
     </div>
 </nav>
 
-<!-- Premium Sidebar Drawer (right) -->
+<!-- Sidebar -->
 <div class="sidebar-drawer" id="sidebarDrawer">
     <div class="sidebar-header">
-        <span class="sidebar-logo">SEEKAR</span>
-        <button class="close-sidebar" id="closeSidebarBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"/>
-                <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-        </button>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Ctext x='0' y='28' font-family='Cormorant Garamond, serif' font-size='28' fill='%230A1C2F' font-weight='600'%3ESEEKAR%3C/text%3E%3C/svg%3E" alt="SEEKAR" class="sidebar-logo-img">
+        <button class="close-sidebar" id="closeSidebarBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="sidebar-nav">
-        <a href="#">Home</a>
-        <a href="#">Buy</a>
-        <a href="#">Rent</a>
-        <a href="#">Sell</a>
-        <a href="#">Invest</a>
-        <a href="#">Services</a>
-        <a href="#">Property Management</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="#">Home</a><a href="#">Buy</a><a href="#">Rent</a><a href="#">Sell</a><a href="#">Invest</a>
+        <a href="#">Services</a><a href="#">Property Management</a><a href="#">About</a><a href="#">Contact</a>
     </div>
     <div class="sidebar-bottom">
-        <div class="sidebar-contact">
-            <p>+91 755 444 7890</p>
-            <p>+91 882 333 5678</p>
-            <p style="margin-top: 8px;">enquiries@seekarproperties.com</p>
-            <p style="margin-top: 12px;">Arera Colony, Bhopal</p>
-        </div>
+        <div class="sidebar-contact"><p>+91 755 444 7890</p><p>+91 882 333 5678</p><p>enquiries@seekarproperties.com</p></div>
         <a href="#" class="inquiry-btn">Request a private consultation</a>
     </div>
 </div>
 <div class="overlay-blur" id="overlayBlur"></div>
 
-<!-- HERO SECTION (Desktop unchanged, mobile adapted with rich text) -->
+<!-- HERO -->
 <div class="hero-desktop">
     <div class="hero-image-area"></div>
     <div class="hero-content-area">
@@ -874,150 +656,92 @@
             <span class="eyebrow">BHOPAL · MADHYA PRADESH</span>
             <h1>Where legacy meets <br>the extraordinary.</h1>
             <p>Curated estates, penthouses, and heritage homes. For those who demand beyond the ordinary.</p>
-            <div class="search-box">
-                <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="10.5" cy="10.5" r="7.5"/>
-                    <line x1="21" y1="21" x2="15.8" y2="15.8"/>
-                </svg>
-                <input type="text" id="heroSearchInput" placeholder="Search by locality, landmark, or property ID">
-            </div>
-            <div class="cta-group">
-                <a href="#" class="btn-primary">Explore Portfolio</a>
-                <a href="#" class="btn-outline">Private consultation</a>
-            </div>
+            <div class="search-box"><input type="text" id="heroSearchInput" placeholder="Search by locality, landmark, or property ID"></div>
+            <div class="cta-group"><a href="#" class="btn-primary">Explore Portfolio</a><a href="#" class="btn-outline">Private consultation</a></div>
             <div class="gold-line-mobile"></div>
         </div>
     </div>
 </div>
 
-<!-- FEATURED COLLECTION (mobile gets extra descriptive text via CSS) -->
-<div class="featured-section">
-    <div class="container" style="max-width: 1440px; margin:0 auto;">
-        <span class="eyebrow">THE EDIT</span>
-        <h2 class="section-title">Featured collection</h2>
-        <div class="featured-grid">
-            <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1974&auto=format');">
-                <div class="card-overlay"><h3>The Lakeview Manor</h3><p>Shahpura Lake · 7,200 sq.ft.</p><div class="price-tag">PRICE UPON REQUEST</div></div>
-            </div>
-            <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=1974&auto=format');">
-                <div class="card-overlay"><h3>Royal Heritage Pavilion</h3><p>Arera Hills · 5 Beds + Garden</p><div class="price-tag">₹ 6.8 CRORES</div></div>
-            </div>
-            <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=format');">
-                <div class="card-overlay"><h3>The Modernist Penthouse</h3><p>Bhattakuffer · Sky Villa</p><div class="price-tag">EXCLUSIVE LISTING</div></div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- FEATURED COLLECTION (2 images per row on tablet/mobile) -->
+<div class="featured-section"><div class="container"><span class="eyebrow">THE EDIT</span><h2 class="section-title">Featured collection</h2>
+<div class="featured-grid">
+    <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1974&auto=format');"><div class="card-overlay"><h3>The Lakeview Manor</h3><p>Shahpura Lake · 7,200 sq.ft.</p><div class="price-tag">PRICE UPON REQUEST</div></div></div>
+    <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=1974&auto=format');"><div class="card-overlay"><h3>Royal Heritage Pavilion</h3><p>Arera Hills · 5 Beds + Garden</p><div class="price-tag">₹ 6.8 CRORES</div></div></div>
+    <div class="feature-card" style="background-image: url('https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=2080&auto=format');"><div class="card-overlay"><h3>The Modernist Penthouse</h3><p>Bhattakuffer · Sky Villa</p><div class="price-tag">EXCLUSIVE LISTING</div></div></div>
+</div></div></div>
 
-<!-- LIFESTYLE SECTION -->
-<div class="lifestyle">
-    <div class="lifestyle-overlay">
-        <h2>Beyond architecture.<br>An art of belonging.</h2>
-        <a href="#" class="btn-gold">Discover the Seeker lifestyle →</a>
-    </div>
-</div>
+<!-- LIFESTYLE -->
+<div class="lifestyle"><div class="lifestyle-overlay"><h2>Beyond architecture.<br>An art of belonging.</h2><a href="#" class="btn-gold">Discover the Seeker lifestyle →</a></div></div>
 
-<!-- LOCATION SHOWCASE (desktop grid, mobile single column) -->
-<div class="locations-section">
-    <div class="container" style="max-width: 1440px; margin:0 auto;">
-        <span class="eyebrow">ENVIRONS</span>
-        <h2 class="section-title">Prime addresses, Bhopal</h2>
-        <div class="locations-grid">
-            <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format');"><div class="location-label">Arera Hills</div></div>
-            <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2070&auto=format');"><div class="location-label">Shahpura Lakefront</div></div>
-            <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format');"><div class="location-label">Bhattakuffer Valley</div></div>
-            <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2070&auto=format');"><div class="location-label">Premium Corridor · VIP Road</div></div>
-        </div>
-    </div>
-</div>
+<!-- LOCATIONS (2 col on mobile) -->
+<div class="locations-section"><div class="container"><span class="eyebrow">ENVIRONS</span><h2 class="section-title">Prime addresses, Bhopal</h2>
+<div class="locations-grid">
+    <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format');"><div class="location-label">Arera Hills</div></div>
+    <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=2070&auto=format');"><div class="location-label">Shahpura Lakefront</div></div>
+    <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format');"><div class="location-label">Bhattakuffer Valley</div></div>
+    <div class="location-card" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2070&auto=format');"><div class="location-label">Premium Corridor</div></div>
+</div></div></div>
 
-<!-- SERVICES SECTION -->
-<div class="services-section">
-    <div class="container" style="max-width: 1440px; margin:0 auto;">
-        <span class="eyebrow">EXPERTISE</span>
-        <h2 class="section-title">Concierge of real estate</h2>
-        <div class="services-grid">
-            <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format');"><div class="service-info"><h3>Property Management</h3><p>White-glove asset care</p></div></div>
-            <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format');"><div class="service-info"><h3>Buying</h3><p>Private acquisition advisory</p></div></div>
-            <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185009-5ed9a2e9f9d9?q=80&w=2072&auto=format');"><div class="service-info"><h3>Selling</h3><p>Global marketing & discretion</p></div></div>
-            <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2070&auto=format');"><div class="service-info"><h3>Renting</h3><p>Curated leases & premium tenants</p></div></div>
-        </div>
-    </div>
-</div>
+<!-- SERVICES (2 col) -->
+<div class="services-section"><div class="container"><span class="eyebrow">EXPERTISE</span><h2 class="section-title">Concierge of real estate</h2>
+<div class="services-grid">
+    <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format');"><div class="service-info"><h3>Property Management</h3><p>White-glove asset care</p></div></div>
+    <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format');"><div class="service-info"><h3>Buying</h3><p>Private acquisition advisory</p></div></div>
+    <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185009-5ed9a2e9f9d9?q=80&w=2072&auto=format');"><div class="service-info"><h3>Selling</h3><p>Global marketing & discretion</p></div></div>
+    <div class="service-tile" style="background-image: url('https://images.unsplash.com/photo-1560185127-6ed189bf02f4?q=80&w=2070&auto=format');"><div class="service-info"><h3>Renting</h3><p>Curated leases</p></div></div>
+</div></div></div>
 
-<!-- CTA SECTION -->
-<div class="cta-premium">
-    <h2>Your estate story begins here</h2>
-    <p>Discretion, insight and the finest properties across Bhopal & beyond.</p>
-    <a href="#" class="btn-gold">Arrange a private viewing →</a>
-</div>
+<!-- LEADERSHIP (Founders) -->
+<div class="leadership-section"><div class="container" style="text-align:center"><span class="eyebrow">THE VISIONARIES</span><h2 class="section-title">Leadership & Legacy</h2><p style="color:#5B6E8C; max-width:600px; margin:0.5rem auto">The driving force behind SEEKAR's uncompromising standard.</p></div>
+<div class="leadership-grid">
+    <div class="leader-card"><div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1887&auto=format');"></div><div class="leader-info"><div class="leader-name">Ishwar Singh Chauhan</div><div class="leader-title">Founder & Managing Director</div><div class="leader-bio">Over two decades shaping Bhopal's luxury landscape. Every SEEKAR property tells a story of enduring value.</div><div class="gold-quote" style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“We don't just sell estates — we curate legacies.”</div></div></div>
+    <div class="leader-card"><div class="leader-image" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1888&auto=format');"></div><div class="leader-info"><div class="leader-name">Sagar Singh Chauhan</div><div class="leader-title">Chief Executive Officer</div><div class="leader-bio">Global mindset, redefining premium real estate. Discretion and white-glove care at the forefront.</div><div class="gold-quote" style="border-left:3px solid var(--gold-subtle); padding-left:1rem; margin-top:1rem;">“Excellence is not an act, but a habit.”</div></div></div>
+</div></div>
 
-<!-- PREMIUM FOOTER (structured, responsive) -->
-<footer class="premium-footer">
-    <div class="footer-grid">
-        <div class="footer-brand">
-            <div class="footer-logo">SEEKAR Properties</div>
-            <p>Curating Bhopal's finest estates with white-glove service and absolute discretion. Established with a vision to redefine luxury real estate.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Explore</h4>
-            <a href="#">Buy</a>
-            <a href="#">Rent</a>
-            <a href="#">Sell</a>
-            <a href="#">Invest</a>
-        </div>
-        <div class="footer-col">
-            <h4>Services</h4>
-            <a href="#">Property Management</a>
-            <a href="#">Concierge</a>
-            <a href="#">Valuation</a>
-            <a href="#">Legal advisory</a>
-        </div>
-        <div class="footer-col footer-contact">
-            <h4>Connect</h4>
-            <p>+91 755 444 7890</p>
-            <p>+91 882 333 5678</p>
-            <p>enquiries@seekarproperties.com</p>
-            <p style="margin-top: 12px;">1st Floor, E-7 Arcade, Arera Colony, Bhopal - 462016</p>
-        </div>
-    </div>
-    <div class="copyright">
-        © 2025 SEEKAR Properties — Luxury Real Estate, Bhopal. All rights reserved.
-    </div>
-</footer>
+<!-- ADDITIONAL CONTENT: By the Numbers -->
+<div class="stats-section"><div class="container"><span class="eyebrow">OUR FOOTPRINT</span><h2 class="section-title">By the numbers</h2><div class="stats-grid"><div class="stat-item"><div class="stat-number">₹1200+ Cr</div><div class="stat-label">Transaction Value</div></div><div class="stat-item"><div class="stat-number">250+</div><div class="stat-label">Luxury Estates Sold</div></div><div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Client Satisfaction</div></div><div class="stat-item"><div class="stat-number">15+ Years</div><div class="stat-label">Industry Excellence</div></div></div></div></div>
+
+<!-- CTA -->
+<div class="cta-premium"><h2>Your estate story begins here</h2><p>Discretion, insight and the finest properties across Bhopal & beyond.</p><a href="#" class="btn-gold">Arrange a private viewing →</a></div>
+
+<!-- FOOTER with logo image -->
+<footer class="premium-footer"><div class="footer-grid"><div class="footer-brand"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Ctext x='0' y='28' font-family='Cormorant Garamond, serif' font-size='26' fill='%230A1C2F' font-weight='600'%3ESEEKAR%3C/text%3E%3C/svg%3E" class="footer-logo-img" alt="SEEKAR"><p>Curating Bhopal's finest estates with white-glove service.</p></div><div class="footer-col"><h4>Explore</h4><a href="#">Buy</a><a href="#">Rent</a><a href="#">Sell</a><a href="#">Invest</a></div><div class="footer-col"><h4>Services</h4><a href="#">Property Management</a><a href="#">Concierge</a><a href="#">Valuation</a></div><div class="footer-col footer-contact"><h4>Connect</h4><p>+91 755 444 7890</p><p>+91 882 333 5678</p><p>enquiries@seekarproperties.com</p><p>Arera Colony, Bhopal</p></div></div><div class="copyright">© 2025 SEEKAR Properties — Luxury Real Estate, Bhopal. All rights reserved.</div></footer>
 
 <script>
-    // Mobile sidebar and search functionality
+    // Hide/show navbar on scroll (fade away on down, appear on up)
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+            navbar.classList.remove('hide');
+            return;
+        }
+        if (currentScroll > lastScroll && !navbar.classList.contains('hide')) {
+            navbar.classList.add('hide');
+        } else if (currentScroll < lastScroll && navbar.classList.contains('hide')) {
+            navbar.classList.remove('hide');
+        }
+        if (currentScroll > 50) navbar.classList.add('scrolled');
+        else navbar.classList.remove('scrolled');
+        lastScroll = currentScroll;
+    });
+
+    // Sidebar logic
     const menuBtn = document.getElementById('mobileMenuBtn');
     const closeBtn = document.getElementById('closeSidebarBtn');
     const sidebar = document.getElementById('sidebarDrawer');
     const overlay = document.getElementById('overlayBlur');
-
-    function openSidebar() {
-        sidebar.classList.add('open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeSidebar() {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
     if (menuBtn) menuBtn.addEventListener('click', openSidebar);
     if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
     overlay.addEventListener('click', closeSidebar);
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-        link.addEventListener('click', closeSidebar);
-    });
-
+    document.querySelectorAll('.sidebar-nav a').forEach(link => link.addEventListener('click', closeSidebar));
     const mobileSearch = document.getElementById('mobileSearchBtn');
     const heroInput = document.getElementById('heroSearchInput');
-    if (mobileSearch && heroInput) {
-        mobileSearch.addEventListener('click', () => {
-            heroInput.focus();
-            heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-    }
+    if (mobileSearch && heroInput) mobileSearch.addEventListener('click', () => { heroInput.focus(); heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
 </script>
 </body>
 </html>
